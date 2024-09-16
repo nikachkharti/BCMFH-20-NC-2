@@ -80,6 +80,46 @@
             //Console.WriteLine($"Hello my name is {firstName} {lastName}. I am {age} years old");
 
 
+            //int number = 5;
+
+            //if (number == 5 || number == 7)
+            //{
+            //    Console.WriteLine("5 OR 7");
+            //}
+            //else if (number > 10)
+            //{
+            //    Console.WriteLine("10");
+            //}
+            //else if (number == 12)
+            //{
+            //    Console.WriteLine("12");
+            //}
+            //else
+            //{
+            //    Console.WriteLine("ERROR");
+            //}
+
+
+            //switch (number)
+            //{
+            //    case int x when x > 10:
+            //        Console.WriteLine("METIA 10-ZE ");
+            //        break;
+            //    case 10:
+            //        Console.WriteLine("NUMBER IS 10");
+            //        break;
+            //    case 12:
+            //        Console.WriteLine("NUMBER IS 12");
+            //        break;
+            //    default:
+            //        Console.WriteLine("ERROR");
+            //        break;
+            //}
+
+
+
+
+
 
 
         }
