@@ -118,9 +118,9 @@
 
 
 
+            int.TryParse("dasd", out int x);
 
-
-
+            Console.WriteLine(x);
 
         }
     }
