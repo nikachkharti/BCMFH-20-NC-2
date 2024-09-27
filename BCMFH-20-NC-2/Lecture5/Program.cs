@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Headers;
-
+﻿
 namespace Lecture5
 {
     internal class Program
@@ -59,9 +58,10 @@ namespace Lecture5
             //Console.WriteLine(name1.ToLower());
             //Console.WriteLine(name1.ToUpper());
             //string trimmed = name1.Trim();
-
-
         }
+
+
+
 
 
         //static int Sum(int argument1, int argument2)
