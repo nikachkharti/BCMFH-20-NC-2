@@ -11,9 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture4", "Lecture4\Lectur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture5", "Lecture5\Lecture5.csproj", "{BEEB6F81-6B4C-4091-85DA-0AE56D205831}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture6", "Lecture6\Lecture6.csproj", "{AB016271-027D-4EEF-9756-37017958254E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture6", "Lecture6\Lecture6.csproj", "{AB016271-027D-4EEF-9756-37017958254E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms", "Algorithms\Algorithms.csproj", "{E35F7268-FACD-42CB-A994-D418F314222E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Algorithms.csproj", "{E35F7268-FACD-42CB-A994-D418F314222E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture7", "Lecture7\Lecture7.csproj", "{47234CB7-D66D-47BB-A128-F40F308D6099}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{E35F7268-FACD-42CB-A994-D418F314222E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E35F7268-FACD-42CB-A994-D418F314222E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E35F7268-FACD-42CB-A994-D418F314222E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47234CB7-D66D-47BB-A128-F40F308D6099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47234CB7-D66D-47BB-A128-F40F308D6099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47234CB7-D66D-47BB-A128-F40F308D6099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47234CB7-D66D-47BB-A128-F40F308D6099}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
