@@ -1,29 +1,92 @@
-﻿using System.Net.Http.Headers;
+﻿
+//Single responsibility
+//Encapsulation - ენკაფსულაცია. გარკვეული ფუნქციონლის დაფარვა მისივე უსაფრთხოების მიზნით.
 
 namespace Lecture7
 {
+
+    public class Student
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        private int age;
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                if (value > 18)
+                {
+                    age = value;
+                }
+            }
+        }
+
+        private string email;
+        public string Email
+        {
+            get { return email; }
+            set
+            {
+                if (value.Contains('@') && value.Contains('.'))
+                {
+                    email = value;
+                }
+            }
+        }
+    }
+
+
+
     public class Person // კლასი აღიწერება როგორი იყოს ობიექტი
     {
-        public string firstName;
-        public string lastName;
-        public int age;
+        //AUTO PROPERTY
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public Person(string firstName, string lastName, int age)
+
+        //FULL PROPERTY
+        private int age;
+        public int Age
         {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.age = age;
+            set
+            {
+                if (value > 0)
+                {
+                    this.age = value;
+                }
+            }
+            get
+            {
+                return this.age;
+            }
         }
 
-        public Person()
-        {
-        }
 
 
-        public void Talk()
-        {
-            Console.WriteLine($"Hello I am {firstName} {lastName} {age} years old");
-        }
+
+        //public void SetAge(int value)
+        //{
+        //    if (value > 0)
+        //    {
+        //        this.age = value;
+        //    }
+        //}
+
+        //public int GetAge()
+        //{
+        //    return this.age;
+        //}
+
+
+
+
+
+        //public void Talk()
+        //{
+        //    Console.WriteLine($"Hello I am {firstName} {lastName} {age} years old");
+        //}
     }
 
 
@@ -35,22 +98,22 @@ namespace Lecture7
             //Person firstPersonObject = new Person();
 
 
-
-
-
             //1. წერტილებით
-            Person mariamObject = new Person("Mariam", "Natchkebia", 20); //კონსტრუქტორი
+            Person mariamObject = new Person();
             //mariamObject.firstName = "Mariam";
             //mariamObject.lastName = "Natchkebia";
-            //mariamObject.age = 20;
-            mariamObject.Talk();
+
+
+            mariamObject.Age = 20;
+
+            Console.WriteLine(mariamObject.Age);
 
 
 
 
 
 
-
+            /*
 
             Person ninoObject = new Person(); //კონსტრუქტორი
             ninoObject.age = 30;
@@ -79,6 +142,7 @@ namespace Lecture7
 
             ketavanObject.Talk();
 
+            */
 
         }
     }
