@@ -27,6 +27,8 @@
     {
         public double Salary { get; set; }
 
+        //public new int Age { get; set; } გადაფარვა
+
         public Employee(string firstName, string lastName, int age, double salary) : base(firstName, lastName, age)
         {
             Salary = salary;
