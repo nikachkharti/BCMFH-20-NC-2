@@ -2,9 +2,10 @@
 //Single responsibility
 //Encapsulation - ენკაფსულაცია. გარკვეული ფუნქციონლის დაფარვა მისივე უსაფრთხოების მიზნით.
 
+using Lecture7.Minibank.Models;
+
 namespace Lecture7
 {
-
     public class Student
     {
         public string FirstName { get; set; }
@@ -36,9 +37,6 @@ namespace Lecture7
             }
         }
     }
-
-
-
     public class Person // კლასი აღიწერება როგორი იყოს ობიექტი
     {
         //AUTO PROPERTY
@@ -94,21 +92,55 @@ namespace Lecture7
     {
         static void Main(string[] args)
         {
+            Client client1 = new Client()
+            {
+                FirstName = "Mikheil",
+                LastName = "Nikoleishvili",
+                PersonalNumber = "12345678901",
+                Account = new Account()
+                {
+                    AccountNumber = "1234567890112345678901",
+                    Balance = 500,
+                    Currency = "GEL"
+                }
+            };
+
+
+            Account client2Account = new();
+            client2Account.AccountNumber = "1234567891212345678912";
+            client2Account.Balance = 1000;
+            client2Account.Currency = "GEL";
+
+            Client client2 = new();
+            client2.FirstName = "Mariam";
+            client2.LastName = "Natchkebia";
+            client2.PersonalNumber = "12345678912";
+            client2.Account = client2Account;
+
+
+            Console.WriteLine(client1);
+            Console.WriteLine(client2);
+
+            client1.Account.Transfer(client2.Account, 600);
+
+            Console.WriteLine("-------------------------");
+
+            Console.WriteLine(client1);
+            Console.WriteLine(client2);
+
             // ობიექტი რომელიც შექმნილია Person კლასის მაგალითზე
             //Person firstPersonObject = new Person();
 
 
             //1. წერტილებით
-            Person mariamObject = new Person();
+            //Person mariamObject = new Person();
             //mariamObject.firstName = "Mariam";
             //mariamObject.lastName = "Natchkebia";
 
 
-            mariamObject.Age = 20;
+            //mariamObject.Age = 20;
 
-            Console.WriteLine(mariamObject.Age);
-
-
+            //Console.WriteLine(mariamObject.Age);
 
 
 
