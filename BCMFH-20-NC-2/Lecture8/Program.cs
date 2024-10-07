@@ -1,6 +1,49 @@
 ﻿namespace Lecture8
 {
-    public class Person
+    interface IFlyer
+    {
+        void Fly();
+    }
+
+    public interface IBird
+    {
+        void Eat();
+        void Drink();
+    }
+
+    public class Eagle : IBird, IFlyer
+    {
+        public void Drink()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eat()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Fly()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class Penguin : IBird
+    {
+        public void Drink()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Eat()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+
+    public abstract class Person
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -17,13 +60,10 @@
         {
         }
 
-        public virtual string Talk()
-        {
-            return $"Hello I am Person {FirstName} {LastName} {Age} years old.";
-        }
+        public virtual string Talk() => $"Hello I am Person {FirstName} {LastName} {Age} years old.";
+        public abstract void Walk();
     }
-
-    public class Employee : Person
+    public abstract class Employee : Person
     {
         public double Salary { get; set; }
 
@@ -61,8 +101,12 @@
         {
             return $"Hello I am Student {FirstName} {LastName} {Age} years old, score {Score} , Subject {Subject.Name}";
         }
-    }
 
+        public override void Walk()
+        {
+            Console.WriteLine("I am a Student and I walk in university");
+        }
+    }
     public class Teacher : Employee
     {
         public Subject Subject { get; set; } //კომპოზიცია
@@ -79,9 +123,12 @@
         {
             return $"Hello I am Teacher {FirstName} {LastName} {Age} years old, salary {Salary} GEL , Subject {Subject.Name}";
         }
+
+        public override void Walk()
+        {
+            Console.WriteLine("I am a Teacher and I walk in university");
+        }
     }
-
-
     public class Subject
     {
         public string Name { get; set; }
@@ -93,7 +140,17 @@
         static void Main()
         {
             //1.მემკვიდრეობა +
+            //2.პოლიმორფიზმი +
+            //3.ენკაფსულაცია +
+            //4.აბსტრაქცია +
 
+
+            //Person personObj1 = new()
+            //{
+            //    FirstName = "Tengiz",
+            //    LastName = "Patchkoria",
+            //    Age = 25
+            //};
             //Employee employeeObj1 = new()
             //{
             //    FirstName = "Giorgi",
@@ -109,6 +166,8 @@
             //    Salary = 500,
             //    Subject = new Subject() { Name = "C#" }
             //};
+            //teacherObj1.Walk();
+
             //Student studObj1 = new()
             //{
             //    FirstName = "Saba",
@@ -117,14 +176,13 @@
             //    Score = 99,
             //    Subject = new Subject() { Name = "C#" }
             //};
+            //studObj1.Walk();
+
 
             //Console.WriteLine($"EMPLOYEE: {employeeObj1.Talk()}");
             //Console.WriteLine($"TEACHER: {teacherObj1.Talk()}");
             //Console.WriteLine($"STUDENT: {studObj1.Talk()}");
 
-
-
-            //2.პოლიმორფიზმი +
 
             //Console.WriteLine(employeeObj1.Talk());
             //Console.WriteLine(teacherObj1.Talk());
@@ -132,10 +190,6 @@
 
 
 
-            //3.ენკაფსულაცია +
-
-
-            //4.აბსტრაქცია
         }
 
 
