@@ -4,14 +4,17 @@
     {
         static void Main(string[] args)
         {
+            List<int> x = new() { 1, 2, 3, 3 };
+
+            var result = MyAlgorithms.FirstOrDefault(x, 3);
         }
+
+
+
+
     }
-    //FirstOrDefault
-    //LastOrDefault
-    //FindAll
-    //FindIndex
-    //FindLastIndex
-    //Sum
+
+
     //Reverse
     //Sort
     //Max
