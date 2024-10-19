@@ -1,4 +1,6 @@
-﻿namespace Algorithms
+﻿using Algorithms.Models;
+
+namespace Algorithms
 {
     public class MyAlgorithms
     {
@@ -78,6 +80,20 @@
 
             return result.ToArray();
         }
+        public static List<Vehicle> Where(Vehicle[] vehicleArray)
+        {
+            List<Vehicle> mercedesArray = new();
+
+            for (int i = 0; i < vehicleArray.Length; i++)
+            {
+                if (vehicleArray[i].Make.Contains("Mercedes", StringComparison.OrdinalIgnoreCase))
+                {
+                    mercedesArray.Add(vehicleArray[i]);
+                }
+            }
+
+            return mercedesArray;
+        }
         public static int IndexOf(int[] collection, int value)
         {
             for (int i = 0; i < collection.Length; i++)
@@ -148,5 +164,35 @@
 
             return result;
         }
+        public static Vehicle[] Select(string[] carsArray)
+        {
+            Vehicle[] vehicleArray = new Vehicle[carsArray.Length];
+
+            for (int i = 0; i < carsArray.Length; i++)
+            {
+                vehicleArray[i] = Vehicle.Parse(carsArray[i]);
+            }
+
+            return vehicleArray;
+        }
+        public static Vehicle[] OrderBy(Vehicle[] vehicleArray)
+        {
+            for (int i = 0; i < vehicleArray.Length - 1; i++)
+            {
+                for (int j = i + 1; j < vehicleArray.Length; j++)
+                {
+                    if (vehicleArray[j].Combined > vehicleArray[i].Combined)
+                    {
+                        Vehicle temp = vehicleArray[j];
+                        vehicleArray[j] = vehicleArray[i];
+                        vehicleArray[i] = temp;
+                    }
+                }
+            }
+
+            return vehicleArray;
+        }
+
+
     }
 }

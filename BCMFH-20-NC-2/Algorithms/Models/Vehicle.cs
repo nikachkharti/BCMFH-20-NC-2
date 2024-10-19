@@ -1,4 +1,4 @@
-﻿namespace Lecture11.Models
+﻿namespace Algorithms.Models
 {
     public class Vehicle
     {
