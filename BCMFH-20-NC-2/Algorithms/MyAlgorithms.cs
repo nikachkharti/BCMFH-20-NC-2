@@ -1,4 +1,5 @@
 ﻿using Algorithms.Models;
+using System.Collections;
 
 namespace Algorithms
 {
@@ -192,7 +193,153 @@ namespace Algorithms
 
             return vehicleArray;
         }
+        public static List<int> Distinct(List<int> collection)
+        {
+            HashSet<int> set = new();
 
+            for (int i = 0; i < collection.Count; i++)
+            {
+                set.Add(collection[i]);
+            }
 
+            return set.ToList();
+        }
+        public static int[] Distinct(int[] collection)
+        {
+            HashSet<int> set = new();
+
+            for (int i = 0; i < collection.Length; i++)
+            {
+                set.Add(collection[i]);
+            }
+
+            return set.ToArray();
+        }
+        public static List<int> Reverse(List<int> intList)
+        {
+            Stack<int> stack = new();
+
+            for (int i = 0; i < intList.Count; i++)
+            {
+                stack.Push(intList[i]);
+            }
+
+            return stack.ToList();
+        }
+        public static int[] Reverse(int[] intArray)
+        {
+            Stack<int> stack = new();
+
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                stack.Push(intArray[i]);
+            }
+
+            return stack.ToArray();
+        }
+        public static int Max(int[] intArray)
+        {
+            int max = intArray[0];
+
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (intArray[i] > max)
+                {
+                    max = intArray[i];
+                }
+            }
+
+            return max;
+        }
+        public static int Max(List<int> intList)
+        {
+            int max = intList[0];
+
+            for (int i = 0; i < intList.Count; i++)
+            {
+                if (intList[i] > max)
+                {
+                    max = intList[i];
+                }
+            }
+
+            return max;
+        }
+        public static int Min(int[] intArray)
+        {
+            int min = intArray[0];
+
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (intArray[i] < min)
+                {
+                    min = intArray[i];
+                }
+            }
+
+            return min;
+        }
+        public static int Min(List<int> intList)
+        {
+            int min = intList[0];
+
+            for (int i = 0; i < intList.Count; i++)
+            {
+                if (intList[i] < min)
+                {
+                    min = intList[i];
+                }
+            }
+
+            return min;
+        }
+        public static bool Any(int[] intArray, int element)
+        {
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (intArray[i] == element)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public static bool Any(List<int> intList, int element)
+        {
+            for (int i = 0; i < intList.Count; i++)
+            {
+                if (intList[i] == element)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public static bool All(int[] intArray, int element)
+        {
+            for (int i = 0; i < intArray.Length; i++)
+            {
+                if (intArray[i] != element)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        public static bool All(List<int> intList, int element)
+        {
+            for (int i = 0; i < intList.Count; i++)
+            {
+                if (intList[i] != element)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }
