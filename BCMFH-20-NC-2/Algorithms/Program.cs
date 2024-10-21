@@ -1,4 +1,5 @@
 ﻿using Algorithms.Models;
+using System.Xml.Linq;
 
 namespace Algorithms
 {
@@ -8,8 +9,11 @@ namespace Algorithms
         {
             List<int> intList = new() { 10, 1, 12, 2, 4, 5, 21, 71 };
 
-            var res = MyAlgorithms.FirstOrDefault(intList, IsElementOdd);
+            //var res = MyAlgorithms.FirstOrDefault(intList, x => x % 2 != 0);
+            //var res = MyAlgorithms.FirstOrDefault(intList, x => x == 5);
+
         }
+
 
         public static bool CompareTwoVehiclesWithCombinedValue(Vehicle v1, Vehicle v2)
         {
@@ -57,12 +61,7 @@ namespace Algorithms
         }
         static bool IsElementOdd(int element)
         {
-            if (element % 2 != 0)
-            {
-                return true;
-            }
-
-            return false;
+            return element % 2 != 0;
         }
         static bool IsElementPositive(int element)
         {
