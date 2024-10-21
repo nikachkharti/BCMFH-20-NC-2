@@ -20,13 +20,36 @@ namespace Lecture11
 
             string[] carsArray = File.ReadAllLines("../../../vehicles.csv");
 
-            var vehicles = MyAlgorithms.Select(carsArray);
-            MyAlgorithms.OrderBy(vehicles);
-            MyAlgorithms.Where(vehicles);
+            var vehicles = MyAlgorithms.Select(carsArray, ConvertStringToVehicleObject);
+
+            //var m = MyAlgorithms.Where(vehicles,FindMercedeses);
+
+
+            //MyAlgorithms.OrderBy(vehicles);
+            //MyAlgorithms.Where(vehicles);
+
+            var x = MyAlgorithms.OrderBy(vehicles, CompareTwoVehiclesWithCombinedValue);
 
         }
 
+        public static bool CompareTwoVehiclesWithCombinedValue(Vehicle v1, Vehicle v2)
+        {
+            return v1.Combined > v2.Combined;
+        }
+        public static Vehicle ConvertStringToVehicleObject(string element)
+        {
+            return Vehicle.Parse(element);
+        }
 
+        static bool FindMercedeses(Vehicle vehicle)
+        {
+            if (vehicle.Make.Contains("Mercedes", StringComparison.OrdinalIgnoreCase))
+            {
+                return true;
+            }
+
+            return false;
+        }
 
 
 
