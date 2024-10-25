@@ -20,7 +20,7 @@ namespace Lecture11
 
             string[] carsArray = File.ReadAllLines("../../../vehicles.csv");
 
-            var vehicles = MyAlgorithms.Select(carsArray, ConvertStringToVehicleObject);
+            //var vehicles = MyAlgorithms.Select(carsArray, ConvertStringToVehicleObject);
 
             //var m = MyAlgorithms.Where(vehicles,FindMercedeses);
 
@@ -28,7 +28,7 @@ namespace Lecture11
             //MyAlgorithms.OrderBy(vehicles);
             //MyAlgorithms.Where(vehicles);
 
-            var x = MyAlgorithms.OrderBy(vehicles, CompareTwoVehiclesWithCombinedValue);
+            //var x = MyAlgorithms.OrderBy(vehicles, CompareTwoVehiclesWithCombinedValue);
 
         }
 
