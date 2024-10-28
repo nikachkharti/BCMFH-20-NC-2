@@ -1,7 +1,4 @@
-﻿using Algorithms.Models;
-using System.Collections;
-
-//დელეგატი
+﻿using System.Collections;
 
 namespace Algorithms
 {
@@ -68,45 +65,39 @@ namespace Algorithms
 
             return -1;
         }
-
-
-        public static int LastIndexOf<T>(List<T> collection, Func<T, bool> predicate)
+        public static int LastIndexOf<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            for (int i = collection.Count - 1; i >= 0; i--)
+            int i = default;
+            int result = -1;
+
+            foreach (var item in source)
             {
-                if (predicate(collection[i]))
+                if (predicate(item))
                 {
-                    return i;
+                    result = i;
                 }
-            }
 
-            return -1;
-        }
-        public static int LastIndexOf<T>(T[] collection, Func<T, bool> predicate)
-        {
-            for (int i = collection.Length - 1; i >= 0; i--)
-            {
-                if (predicate(collection[i]))
-                {
-                    return i;
-                }
-            }
-
-            return -1;
-        }
-
-        public static TResult[] Select<TSource, TResult>(TSource[] array, Func<TSource, TResult> selector)
-        {
-            TResult[] result = new TResult[array.Length];
-
-            for (int i = 0; i < array.Length; i++)
-            {
-                result[i] = selector(array[i]);
+                i++;
             }
 
             return result;
         }
+        public static IEnumerable<TResult> Select<TSource, TResult>(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        {
+            foreach (var item in source)
+            {
+                yield return selector(item);
+            }
 
+            //TResult[] result = new TResult[source.Length];
+
+            //for (int i = 0; i < source.Length; i++)
+            //{
+            //    result[i] = selector(source[i]);
+            //}
+
+            //return result;
+        }
         public static IList<T> OrderBy<T>(IList<T> result, Func<T, T, bool> compareFunction)
         {
             for (int i = 0; i < result.Count - 1; i++)
@@ -124,184 +115,83 @@ namespace Algorithms
 
             return result;
         }
-
-
-
-
-
-        //public static T[] OrderBy<T>(T[] result) where T : IComparable<T>
-        //{
-        //    for (int i = 0; i < result.Length - 1; i++)
-        //    {
-        //        for (int j = i + 1; j < result.Length; j++)
-        //        {
-        //            if (result[j].CompareTo(result[i]) == -1)
-        //            {
-        //                T temp = result[j];
-        //                result[j] = result[i];
-        //                result[i] = temp;
-        //            }
-        //        }
-        //    }
-
-        //    return result;
-        //}
-
-
-
-
-
-        /*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public static int Sum(int[] source)
+        public static int Sum(IEnumerable<int> source)
         {
             int result = 0;
 
-            for (int i = 0; i < source.Length; i++)
+            foreach (var item in source)
             {
-                result += source[i];
+                result += item;
             }
 
             return result;
         }
-
-        public static int Sum(List<int> source)
+        public static int Sum(IEnumerable<int> source, Func<int, bool> predicate)
         {
             int result = 0;
 
-            for (int i = 0; i < source.Count; i++)
+            foreach (var item in source)
             {
-                result += source[i];
+                if (predicate(item))
+                {
+                    result += item;
+                }
             }
 
             return result;
         }
-
-
-
-
-
-
-
-
-        public static List<int> Distinct(List<int> source)
+        public static IEnumerable<T> Distinct<T>(IEnumerable<T> source)
         {
-            HashSet<int> set = new();
+            HashSet<T> set = new();
 
-            for (int i = 0; i < source.Count; i++)
+            foreach (var item in source)
             {
-                set.Add(source[i]);
+                set.Add(item);
             }
 
-            return set.ToList();
+            return set;
         }
-        public static int[] Distinct(int[] source)
+        public static IEnumerable<T> Distinct<T>(IEnumerable<T> source, IEqualityComparer<T> comparer)
         {
-            HashSet<int> set = new();
+            HashSet<T> set = new(comparer);
 
-            for (int i = 0; i < source.Length; i++)
+            foreach (var item in source)
             {
-                set.Add(source[i]);
+                set.Add(item);
             }
 
-            return set.ToArray();
+            return set;
         }
-        public static List<int> Reverse(List<int> intList)
+        public static IEnumerable<T> Reverse<T>(IEnumerable<T> source)
         {
-            Stack<int> stack = new();
+            Stack<T> stack = new();
 
-            for (int i = 0; i < intList.Count; i++)
+            foreach (var item in source)
             {
-                stack.Push(intList[i]);
+                stack.Push(item);
             }
 
-            return stack.ToList();
+            return stack;
         }
-        public static int[] Reverse(int[] intArray)
+        public static IEnumerable<T> Reverse<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            Stack<int> stack = new();
+            Stack<T> stack = new();
 
-            for (int i = 0; i < intArray.Length; i++)
+            foreach (var item in source)
             {
-                stack.Push(intArray[i]);
-            }
-
-            return stack.ToArray();
-        }
-        public static int Max(int[] intArray)
-        {
-            int max = intArray[0];
-
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                if (intArray[i] > max)
+                if (predicate(item))
                 {
-                    max = intArray[i];
+                    stack.Push(item);
                 }
             }
 
-            return max;
+            return stack;
         }
-        public static int Max(List<int> intList)
+        public static bool Any<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            int max = intList[0];
-
-            for (int i = 0; i < intList.Count; i++)
+            foreach (var item in source)
             {
-                if (intList[i] > max)
-                {
-                    max = intList[i];
-                }
-            }
-
-            return max;
-        }
-        public static int Min(int[] intArray)
-        {
-            int min = intArray[0];
-
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                if (intArray[i] < min)
-                {
-                    min = intArray[i];
-                }
-            }
-
-            return min;
-        }
-        public static int Min(List<int> intList)
-        {
-            int min = intList[0];
-
-            for (int i = 0; i < intList.Count; i++)
-            {
-                if (intList[i] < min)
-                {
-                    min = intList[i];
-                }
-            }
-
-            return min;
-        }
-        public static bool Any(int[] intArray, int element)
-        {
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                if (intArray[i] == element)
+                if (predicate(item))
                 {
                     return true;
                 }
@@ -309,23 +199,11 @@ namespace Algorithms
 
             return false;
         }
-        public static bool Any(List<int> intList, int element)
+        public static bool All<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            for (int i = 0; i < intList.Count; i++)
+            foreach (var item in source)
             {
-                if (intList[i] == element)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-        public static bool All(int[] intArray, int element)
-        {
-            for (int i = 0; i < intArray.Length; i++)
-            {
-                if (intArray[i] != element)
+                if (!predicate(item))
                 {
                     return false;
                 }
@@ -333,21 +211,47 @@ namespace Algorithms
 
             return true;
         }
-        public static bool All(List<int> intList, int element)
+        public static T Max<T>(IEnumerable<T> source) where T : IComparable<T>
         {
-            for (int i = 0; i < intList.Count; i++)
+            using var enumerator = source.GetEnumerator();
+
+            if (!enumerator.MoveNext())
             {
-                if (intList[i] != element)
+                throw new ArgumentException("Source cannot be empty", nameof(source));
+            }
+
+            T max = enumerator.Current;
+
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current.CompareTo(max) > 0)
                 {
-                    return false;
+                    max = enumerator.Current;
                 }
             }
 
-            return true;
+            return max;
         }
+        public static T Min<T>(IEnumerable<T> source) where T : IComparable<T>
+        {
+            using var enumerator = source.GetEnumerator();
 
+            if (!enumerator.MoveNext())
+            {
+                throw new ArgumentException("Source cannot be empty", nameof(source));
+            }
 
+            T min = enumerator.Current;
 
-         */
+            while (enumerator.MoveNext())
+            {
+                if (enumerator.Current.CompareTo(min) < 0)
+                {
+                    min = enumerator.Current;
+                }
+            }
+
+            return min;
+        }
     }
 }

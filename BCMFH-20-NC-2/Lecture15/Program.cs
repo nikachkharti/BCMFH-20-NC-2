@@ -1,5 +1,4 @@
 ﻿using Algorithms;
-using System.Collections;
 
 namespace Lecture15
 {
@@ -14,7 +13,7 @@ namespace Lecture15
             HashSet<int> intSet = new() { 1, 2, 3, 3, 2 };
             List<string> stringList = new() { "Nika", "Luka", "Ketevan" };
 
-            var result = MyAlgorithms.IndexOf(intAr, x => x % 2 == 0);
+            var result = MyAlgorithms.Min(intAr);
         }
 
 
