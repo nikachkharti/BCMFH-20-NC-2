@@ -5,124 +5,65 @@ using System.Collections;
 
 namespace Algorithms
 {
-    #region ჯენერიკ დელეგატები
-
-    //Action -- არის დელეგატი რომელიც მუშაობს void ტიპის ფუნქციებთან
-
-
-    //Func --> არის დელეგატი რომელიც მიინიჭებს ისეთ ფუნქციას რომელსაც მისაღებ და
-    //დასაბრუნებელ ტიპსაც ჩვენ ვუდგნეთ
-
-
-    //Predicate --> არის დელეგატი რომელიც მიინიჭებს ისეთ ფუნქციას რომელსაც მისაღებ
-    //პარამეტრს ვუდგენთ ჩვენ, ხოლო დასაბრუნებელი
-    //პარამეტრი აუცილებლად არის bool
-
-
-
-    #endregion
-
-
     public class MyAlgorithms
     {
-        public static T FirstOrDefault<T>(List<T> collection, Predicate<T> predicate)
+        public static T FirstOrDefault<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            for (int i = 0; i < collection.Count; i++)
+            foreach (var item in source)
             {
-                if (predicate(collection[i]))
+                if (predicate(item))
                 {
-                    return collection[i];
+                    return item;
                 }
             }
 
             return default;
         }
-        public static T FirstOrDefault<T>(T[] collection, Predicate<T> predicate)
+        public static T LastOrDefault<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            for (int i = 0; i < collection.Length; i++)
+            T result = default;
+
+            foreach (var item in source)
             {
-                if (predicate(collection[i]))
+                if (predicate(item))
                 {
-                    return collection[i];
+                    result = item;
                 }
             }
 
-            return default;
-        }
-        public static T LastOrDefault<T>(List<T> collection, Func<T, bool> predicate)
-        {
-            for (int i = collection.Count - 1; i >= 0; i--)
-            {
-                if (predicate(collection[i]))
-                {
-                    return collection[i];
-                }
-            }
-
-            return default;
-        }
-        public static T LastOrDefault<T>(T[] collection, Func<T, bool> predicate)
-        {
-            for (int i = collection.Length - 1; i >= 0; i--)
-            {
-                if (predicate(collection[i]))
-                {
-                    return collection[i];
-                }
-            }
-
-            return default;
-        }
-
-
-        public static List<T> Where<T>(List<T> collection, Func<T, bool> predicate)
-        {
-            List<T> result = new();
-
-            for (int i = 0; i < collection.Count; i++)
-            {
-                if (predicate(collection[i]))
-                {
-                    result.Add(collection[i]);
-                }
-            }
             return result;
         }
-        public static T[] Where<T>(T[] collection, Func<T, bool> predicate)
+        public static IEnumerable<T> Where<T>(IEnumerable<T> source, Func<T, bool> predicate)
         {
-            List<T> result = new();
-
-            for (int i = 0; i < collection.Length; i++)
+            foreach (T item in source)
             {
-                if (predicate(collection[i]))
+                if (predicate(item))
                 {
-                    result.Add(collection[i]);
+                    yield return item;
                 }
             }
-
-            return result.ToArray();
         }
-
-        public static int IndexOf<T>(T[] collection, Predicate<T> predicate)
+        static IEnumerable<T> MyForeach<T>(IEnumerable<T> source)
         {
-            for (int i = 0; i < collection.Length; i++)
+            IEnumerator enumerator = source.GetEnumerator();
+
+            while (enumerator.MoveNext())
             {
-                if (predicate(collection[i]))
+                yield return (T)enumerator.Current;
+            }
+        }
+        public static int IndexOf<T>(IEnumerable<T> source, Predicate<T> predicate)
+        {
+            int i = 0;
+
+            foreach (var item in source)
+            {
+                if (predicate(item))
                 {
                     return i;
                 }
-            }
 
-            return -1;
-        }
-        public static int IndexOf<T>(List<T> collection, Predicate<T> predicate)
-        {
-            for (int i = 0; i < collection.Count; i++)
-            {
-                if (predicate(collection[i]))
-                {
-                    return i;
-                }
+                i++;
             }
 
             return -1;
@@ -166,11 +107,11 @@ namespace Algorithms
             return result;
         }
 
-        public static T[] OrderBy<T>(T[] result, Func<T, T, bool> compareFunction)
+        public static IList<T> OrderBy<T>(IList<T> result, Func<T, T, bool> compareFunction)
         {
-            for (int i = 0; i < result.Length - 1; i++)
+            for (int i = 0; i < result.Count - 1; i++)
             {
-                for (int j = i + 1; j < result.Length; j++)
+                for (int j = i + 1; j < result.Count; j++)
                 {
                     if (compareFunction(result[j], result[i]))
                     {
@@ -183,6 +124,8 @@ namespace Algorithms
 
             return result;
         }
+
+
 
 
 
@@ -223,25 +166,25 @@ namespace Algorithms
 
 
 
-        public static int Sum(int[] collection)
+        public static int Sum(int[] source)
         {
             int result = 0;
 
-            for (int i = 0; i < collection.Length; i++)
+            for (int i = 0; i < source.Length; i++)
             {
-                result += collection[i];
+                result += source[i];
             }
 
             return result;
         }
 
-        public static int Sum(List<int> collection)
+        public static int Sum(List<int> source)
         {
             int result = 0;
 
-            for (int i = 0; i < collection.Count; i++)
+            for (int i = 0; i < source.Count; i++)
             {
-                result += collection[i];
+                result += source[i];
             }
 
             return result;
@@ -254,24 +197,24 @@ namespace Algorithms
 
 
 
-        public static List<int> Distinct(List<int> collection)
+        public static List<int> Distinct(List<int> source)
         {
             HashSet<int> set = new();
 
-            for (int i = 0; i < collection.Count; i++)
+            for (int i = 0; i < source.Count; i++)
             {
-                set.Add(collection[i]);
+                set.Add(source[i]);
             }
 
             return set.ToList();
         }
-        public static int[] Distinct(int[] collection)
+        public static int[] Distinct(int[] source)
         {
             HashSet<int> set = new();
 
-            for (int i = 0; i < collection.Length; i++)
+            for (int i = 0; i < source.Length; i++)
             {
-                set.Add(collection[i]);
+                set.Add(source[i]);
             }
 
             return set.ToArray();
