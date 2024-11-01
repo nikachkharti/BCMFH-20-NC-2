@@ -1,4 +1,4 @@
-﻿using Algorithms;
+﻿using MyAlgorithms;
 
 namespace Lecture16
 {

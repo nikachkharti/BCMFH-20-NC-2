@@ -1,4 +1,4 @@
-﻿namespace Algorithms.Models
+﻿namespace MyAlgorithms
 {
     public class Vehicle
     {

@@ -1,5 +1,4 @@
-﻿using Algorithms;
-using Algorithms.Models;
+﻿using MyAlgorithms;
 
 namespace Lecture11
 {

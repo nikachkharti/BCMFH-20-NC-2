@@ -1,4 +1,4 @@
-﻿using Algorithms;
+﻿using MyAlgorithms;
 
 namespace Lecture15
 {
@@ -8,12 +8,12 @@ namespace Lecture15
         static void Main(string[] args)
         {
             List<int> intList = new() { 1, 2, 3 };
-            int[] intAr = { 1,10, 20, 30 };
+            int[] intAr = { 1, 10, 20, 30 };
 
             HashSet<int> intSet = new() { 1, 2, 3, 3, 2 };
             List<string> stringList = new() { "Nika", "Luka", "Ketevan" };
 
-            var result = MyAlgorithms.Min(intAr);
+            //var result = MyAlgorithms.Min(intAr);
         }
 
 

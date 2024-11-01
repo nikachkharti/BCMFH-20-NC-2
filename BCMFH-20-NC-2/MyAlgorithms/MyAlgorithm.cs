@@ -1,8 +1,6 @@
-﻿using System.Collections;
-
-namespace Algorithms
+﻿namespace MyAlgorithms
 {
-    public static class MyAlgorithms
+    public static class MyAlgorithm
     {
         public static T MyFirstOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
@@ -42,7 +40,7 @@ namespace Algorithms
         }
         static IEnumerable<T> MyForeach<T>(this IEnumerable<T> source)
         {
-            IEnumerator enumerator = source.GetEnumerator();
+            var enumerator = source.GetEnumerator();
 
             while (enumerator.MoveNext())
             {

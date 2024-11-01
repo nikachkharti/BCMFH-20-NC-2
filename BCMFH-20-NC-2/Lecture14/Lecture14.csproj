@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
 	  <ProjectReference Include="..\Lecture11\Lecture11.csproj" />
+	  <ProjectReference Include="..\MyAlgorithms\MyAlgorithms.csproj" />
 	</ItemGroup>
 
 </Project>
