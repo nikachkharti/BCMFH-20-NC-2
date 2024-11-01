@@ -2,9 +2,9 @@
 
 namespace Algorithms
 {
-    public class MyAlgorithms
+    public static class MyAlgorithms
     {
-        public static T FirstOrDefault<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static T MyFirstOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             foreach (var item in source)
             {
@@ -16,7 +16,7 @@ namespace Algorithms
 
             return default;
         }
-        public static T LastOrDefault<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static T MyLastOrDefault<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             T result = default;
 
@@ -30,7 +30,7 @@ namespace Algorithms
 
             return result;
         }
-        public static IEnumerable<T> Where<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static IEnumerable<T> MyWhere<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             foreach (T item in source)
             {
@@ -40,7 +40,7 @@ namespace Algorithms
                 }
             }
         }
-        static IEnumerable<T> MyForeach<T>(IEnumerable<T> source)
+        static IEnumerable<T> MyForeach<T>(this IEnumerable<T> source)
         {
             IEnumerator enumerator = source.GetEnumerator();
 
@@ -49,7 +49,7 @@ namespace Algorithms
                 yield return (T)enumerator.Current;
             }
         }
-        public static int IndexOf<T>(IEnumerable<T> source, Predicate<T> predicate)
+        public static int MyIndexOf<T>(this IEnumerable<T> source, Predicate<T> predicate)
         {
             int i = 0;
 
@@ -65,7 +65,7 @@ namespace Algorithms
 
             return -1;
         }
-        public static int LastIndexOf<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static int MyLastIndexOf<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             int i = default;
             int result = -1;
@@ -82,7 +82,7 @@ namespace Algorithms
 
             return result;
         }
-        public static IEnumerable<TResult> Select<TSource, TResult>(IEnumerable<TSource> source, Func<TSource, TResult> selector)
+        public static IEnumerable<TResult> MySelect<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             foreach (var item in source)
             {
@@ -98,7 +98,7 @@ namespace Algorithms
 
             //return result;
         }
-        public static IList<T> OrderBy<T>(IList<T> result, Func<T, T, bool> compareFunction)
+        public static IList<T> MyOrderBy<T>(this IList<T> result, Func<T, T, bool> compareFunction)
         {
             for (int i = 0; i < result.Count - 1; i++)
             {
@@ -115,7 +115,7 @@ namespace Algorithms
 
             return result;
         }
-        public static int Sum(IEnumerable<int> source)
+        public static int MySum(this IEnumerable<int> source)
         {
             int result = 0;
 
@@ -126,7 +126,7 @@ namespace Algorithms
 
             return result;
         }
-        public static int Sum(IEnumerable<int> source, Func<int, bool> predicate)
+        public static int MySum(this IEnumerable<int> source, Func<int, bool> predicate)
         {
             int result = 0;
 
@@ -140,7 +140,7 @@ namespace Algorithms
 
             return result;
         }
-        public static IEnumerable<T> Distinct<T>(IEnumerable<T> source)
+        public static IEnumerable<T> MyDistinct<T>(this IEnumerable<T> source)
         {
             HashSet<T> set = new();
 
@@ -151,7 +151,7 @@ namespace Algorithms
 
             return set;
         }
-        public static IEnumerable<T> Distinct<T>(IEnumerable<T> source, IEqualityComparer<T> comparer)
+        public static IEnumerable<T> MyDistinct<T>(this IEnumerable<T> source, IEqualityComparer<T> comparer)
         {
             HashSet<T> set = new(comparer);
 
@@ -162,7 +162,7 @@ namespace Algorithms
 
             return set;
         }
-        public static IEnumerable<T> Reverse<T>(IEnumerable<T> source)
+        public static IEnumerable<T> MyReverse<T>(this IEnumerable<T> source)
         {
             Stack<T> stack = new();
 
@@ -173,7 +173,7 @@ namespace Algorithms
 
             return stack;
         }
-        public static IEnumerable<T> Reverse<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static IEnumerable<T> MyReverse<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             Stack<T> stack = new();
 
@@ -187,7 +187,7 @@ namespace Algorithms
 
             return stack;
         }
-        public static bool Any<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static bool MyAny<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             foreach (var item in source)
             {
@@ -199,7 +199,7 @@ namespace Algorithms
 
             return false;
         }
-        public static bool All<T>(IEnumerable<T> source, Func<T, bool> predicate)
+        public static bool MyAll<T>(this IEnumerable<T> source, Func<T, bool> predicate)
         {
             foreach (var item in source)
             {
@@ -211,7 +211,7 @@ namespace Algorithms
 
             return true;
         }
-        public static T Max<T>(IEnumerable<T> source) where T : IComparable<T>
+        public static T MyMax<T>(this IEnumerable<T> source) where T : IComparable<T>
         {
             using var enumerator = source.GetEnumerator();
 
@@ -232,7 +232,7 @@ namespace Algorithms
 
             return max;
         }
-        public static T Min<T>(IEnumerable<T> source) where T : IComparable<T>
+        public static T MyMin<T>(this IEnumerable<T> source) where T : IComparable<T>
         {
             using var enumerator = source.GetEnumerator();
 
@@ -253,7 +253,7 @@ namespace Algorithms
 
             return min;
         }
-        public static IEnumerable<T> Take<T>(IEnumerable<T> source, int count)
+        public static IEnumerable<T> MyTake<T>(this IEnumerable<T> source, int count)
         {
             int taken = 0;
 
@@ -264,7 +264,7 @@ namespace Algorithms
                 yield return item;
             }
         }
-        public static IEnumerable<T> Skip<T>(IEnumerable<T> source, int count)
+        public static IEnumerable<T> MySkip<T>(this IEnumerable<T> source, int count)
         {
             int skipped = 0;
 
