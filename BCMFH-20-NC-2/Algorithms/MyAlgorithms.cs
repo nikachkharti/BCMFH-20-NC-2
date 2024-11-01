@@ -253,7 +253,6 @@ namespace Algorithms
 
             return min;
         }
-
         public static IEnumerable<T> Take<T>(IEnumerable<T> source, int count)
         {
             int taken = 0;
@@ -265,7 +264,6 @@ namespace Algorithms
                 yield return item;
             }
         }
-
         public static IEnumerable<T> Skip<T>(IEnumerable<T> source, int count)
         {
             int skipped = 0;
