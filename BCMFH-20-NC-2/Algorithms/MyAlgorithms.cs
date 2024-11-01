@@ -253,5 +253,29 @@ namespace Algorithms
 
             return min;
         }
+
+        public static IEnumerable<T> Take<T>(IEnumerable<T> source, int count)
+        {
+            int taken = 0;
+
+            foreach (var item in source)
+            {
+                if (taken++ >= count)
+                    yield break;
+                yield return item;
+            }
+        }
+
+        public static IEnumerable<T> Skip<T>(IEnumerable<T> source, int count)
+        {
+            int skipped = 0;
+
+            foreach (var item in source)
+            {
+                if (skipped++ < count)
+                    continue;
+                yield return item;
+            }
+        }
     }
 }
