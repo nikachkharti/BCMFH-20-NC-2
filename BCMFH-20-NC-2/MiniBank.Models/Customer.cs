@@ -1,4 +1,7 @@
-﻿namespace MiniBank.Models
+﻿using System.Collections;
+using System.Diagnostics.CodeAnalysis;
+
+namespace MiniBank.Models
 {
     public class Customer
     {
@@ -9,4 +12,17 @@
         public string Email { get; set; }
         public Type Type { get; set; }
     }
+
+    public class CustomerEqulityComparer : IEqualityComparer<Customer>
+    {
+        public bool Equals(Customer x, Customer y) => x.Id == y.Id &&
+                x.Name.ToLower().Trim() == y.Name.ToLower().Trim() &&
+                x.IdentityNumber.ToLower().Trim() == y.IdentityNumber.ToLower().Trim() &&
+                x.PhoneNumber.Trim() == y.PhoneNumber.Trim() &&
+                x.Email.Trim().ToLower() == y.Email.Trim().ToLower() &&
+                x.Type == y.Type;
+
+        public int GetHashCode([DisallowNull] Customer obj) => obj.Name.Length;
+    }
+
 }
