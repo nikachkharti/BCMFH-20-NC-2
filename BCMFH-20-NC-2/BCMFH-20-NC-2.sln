@@ -31,11 +31,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture14", "Lecture14\Lect
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture15", "Lecture15\Lecture15.csproj", "{A7B54D51-F164-4EC6-BEB2-D277FD23FEA2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture16", "Lecture16\Lecture16.csproj", "{68DB68E4-25C8-4C0B-BCD3-B6E5580E56EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lecture16", "Lecture16\Lecture16.csproj", "{68DB68E4-25C8-4C0B-BCD3-B6E5580E56EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAlgorithms", "MyAlgorithms\MyAlgorithms.csproj", "{A14FCE47-1E07-4121-B397-D89218B7006F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAlgorithms", "MyAlgorithms\MyAlgorithms.csproj", "{A14FCE47-1E07-4121-B397-D89218B7006F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyAlgorithms.Tests", "MyAlgorithms.Tests\MyAlgorithms.Tests.csproj", "{D9A213E5-5A07-4C98-883F-583AE07EE120}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyAlgorithms.Tests", "MyAlgorithms.Tests\MyAlgorithms.Tests.csproj", "{D9A213E5-5A07-4C98-883F-583AE07EE120}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MiniBank", "MiniBank", "{0BDC1BDA-39B1-4C34-AE19-86DCA5D44EC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniBank.Models", "MiniBank.Models\MiniBank.Models.csproj", "{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniBank.Repository", "MiniBank.Repository\MiniBank.Repository.csproj", "{42A9E820-77F3-42C6-8FBF-A06F49A94138}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniBank.Tests", "MiniBank.Tests\MiniBank.Tests.csproj", "{52F4FF9E-9114-4FBB-B3B5-105E811E716A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,9 +119,26 @@ Global
 		{D9A213E5-5A07-4C98-883F-583AE07EE120}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A213E5-5A07-4C98-883F-583AE07EE120}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A213E5-5A07-4C98-883F-583AE07EE120}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42A9E820-77F3-42C6-8FBF-A06F49A94138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42A9E820-77F3-42C6-8FBF-A06F49A94138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42A9E820-77F3-42C6-8FBF-A06F49A94138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42A9E820-77F3-42C6-8FBF-A06F49A94138}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F4FF9E-9114-4FBB-B3B5-105E811E716A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F4FF9E-9114-4FBB-B3B5-105E811E716A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F4FF9E-9114-4FBB-B3B5-105E811E716A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F4FF9E-9114-4FBB-B3B5-105E811E716A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{42BF0D0D-6C2F-462B-BFFC-6CB6848FC5FB} = {0BDC1BDA-39B1-4C34-AE19-86DCA5D44EC8}
+		{42A9E820-77F3-42C6-8FBF-A06F49A94138} = {0BDC1BDA-39B1-4C34-AE19-86DCA5D44EC8}
+		{52F4FF9E-9114-4FBB-B3B5-105E811E716A} = {0BDC1BDA-39B1-4C34-AE19-86DCA5D44EC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94D0EF36-375D-44CC-A92D-EF372FF15CDF}
