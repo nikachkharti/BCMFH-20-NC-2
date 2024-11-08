@@ -1,0 +1,234 @@
+[
+  {
+    "Id": 1,
+    "Iban": "GE94SB5621487456325158",
+    "Currency": "USD",
+    "Balance": 6712.12,
+    "CustomerId": 1,
+    "Name": ""
+  },
+  {
+    "Id": 2,
+    "Iban": "GE71SB8745632154784124",
+    "Currency": "GEL",
+    "Balance": 125.98,
+    "CustomerId": 5,
+    "Name": ""
+  },
+  {
+    "Id": 3,
+    "Iban": "GE91SB8745680154786124",
+    "Currency": "EUR",
+    "Balance": 1145.11,
+    "CustomerId": 12,
+    "Name": ""
+  },
+  {
+    "Id": 4,
+    "Iban": "GE52SB1248690154796173",
+    "Currency": "RUB",
+    "Balance": 14000,
+    "CustomerId": 4,
+    "Name": ""
+  },
+  {
+    "Id": 5,
+    "Iban": "GE13SB0000145872596336",
+    "Currency": "GBP",
+    "Balance": 15476.13,
+    "CustomerId": 8,
+    "Name": ""
+  },
+  {
+    "Id": 6,
+    "Iban": "GE40SB0000896542427788",
+    "Currency": "RUB",
+    "Balance": 181,
+    "CustomerId": 7,
+    "Name": "For Children"
+  },
+  {
+    "Id": 7,
+    "Iban": "GE70SB1238742203698744",
+    "Currency": "USD",
+    "Balance": 22423.11,
+    "CustomerId": 4,
+    "Name": "Business"
+  },
+  {
+    "Id": 8,
+    "Iban": "GE65SB3215889645123458",
+    "Currency": "GBP",
+    "Balance": 445.2,
+    "CustomerId": 2,
+    "Name": ""
+  },
+  {
+    "Id": 9,
+    "Iban": "GE84SB4456987421356445",
+    "Currency": "RUB",
+    "Balance": 125,
+    "CustomerId": 3,
+    "Name": ""
+  },
+  {
+    "Id": 10,
+    "Iban": "GE77SB5541235894562144",
+    "Currency": "GBP",
+    "Balance": 1121,
+    "CustomerId": 8,
+    "Name": ""
+  },
+  {
+    "Id": 11,
+    "Iban": "GE86SB4489900256778651",
+    "Currency": "RUB",
+    "Balance": 2250,
+    "CustomerId": 9,
+    "Name": ""
+  },
+  {
+    "Id": 12,
+    "Iban": "GE91SB4412587693211000",
+    "Currency": "GEL",
+    "Balance": 3500,
+    "CustomerId": 2,
+    "Name": ""
+  },
+  {
+    "Id": 13,
+    "Iban": "GE95SB5541235489412557",
+    "Currency": "USD",
+    "Balance": 127000,
+    "CustomerId": 4,
+    "Name": "Salary"
+  },
+  {
+    "Id": 14,
+    "Iban": "GE55SB7785625594124589",
+    "Currency": "EUR",
+    "Balance": 1000000,
+    "CustomerId": 6,
+    "Name": "Business"
+  },
+  {
+    "Id": 15,
+    "Iban": "GE88SB5547896212354877",
+    "Currency": "USD",
+    "Balance": 15784,
+    "CustomerId": 7,
+    "Name": ""
+  },
+  {
+    "Id": 16,
+    "Iban": "GE65SB4485234795364871",
+    "Currency": "GEL",
+    "Balance": 15,
+    "CustomerId": 8,
+    "Name": ""
+  },
+  {
+    "Id": 17,
+    "Iban": "GE99SB4412354846312435",
+    "Currency": "USD",
+    "Balance": 2.25,
+    "CustomerId": 9,
+    "Name": ""
+  },
+  {
+    "Id": 18,
+    "Iban": "GE95SB4478212336984517",
+    "Currency": "RUB",
+    "Balance": 15,
+    "CustomerId": 3,
+    "Name": ""
+  },
+  {
+    "Id": 19,
+    "Iban": "GE66SB4578123644589411",
+    "Currency": "EUR",
+    "Balance": 136,
+    "CustomerId": 4,
+    "Name": ""
+  },
+  {
+    "Id": 20,
+    "Iban": "GE50SB7844123598745159",
+    "Currency": "GEL",
+    "Balance": 1224,
+    "CustomerId": 2,
+    "Name": ""
+  },
+  {
+    "Id": 21,
+    "Iban": "GE56589521475235541941",
+    "Currency": "GEL",
+    "Balance": 98.11,
+    "CustomerId": 8,
+    "Name": ""
+  },
+  {
+    "Id": 22,
+    "Iban": "GE12SB7748459621100457",
+    "Currency": "GBP",
+    "Balance": 881,
+    "CustomerId": 7,
+    "Name": "For Wife"
+  },
+  {
+    "Id": 23,
+    "Iban": "GE89SB5512359654475123",
+    "Currency": "GEL",
+    "Balance": 232,
+    "CustomerId": 10,
+    "Name": ""
+  },
+  {
+    "Id": 24,
+    "Iban": "GE89SB4477812351478951",
+    "Currency": "EUR",
+    "Balance": 5574,
+    "CustomerId": 10,
+    "Name": ""
+  },
+  {
+    "Id": 25,
+    "Iban": "GE72SB4981244123569182",
+    "Currency": "USD",
+    "Balance": 15977,
+    "CustomerId": 10,
+    "Name": ""
+  },
+  {
+    "Id": 26,
+    "Iban": "GE63SB4578412577896125",
+    "Currency": "GEL",
+    "Balance": 1300,
+    "CustomerId": 7,
+    "Name": ""
+  },
+  {
+    "Id": 27,
+    "Iban": "GE77SB1245789987456662",
+    "Currency": "GEL",
+    "Balance": 3000,
+    "CustomerId": 9,
+    "Name": ""
+  },
+  {
+    "Id": 28,
+    "Iban": "GE25SB1854721366954147",
+    "Currency": "EUR",
+    "Balance": 3588,
+    "CustomerId": 3,
+    "Name": ""
+  },
+  {
+    "Id": 29,
+    "Iban": "GE45SB7712459832149845",
+    "Currency": "GEL",
+    "Balance": 50000,
+    "CustomerId": 3,
+    "Name": ""
+  }
+]

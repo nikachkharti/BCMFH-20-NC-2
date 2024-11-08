@@ -1,0 +1,34 @@
+[
+  {
+    "Id": 1,
+    "Iban": "GE94SB5621487456325158",
+    "Currency": "USD",
+    "Balance": 6712.12,
+    "CustomerId": 1,
+    "Name": ""
+  },
+  {
+    "Id": 1,
+    "Iban": "GE65SB3215889645123458",
+    "Currency": "GBP",
+    "Balance": 445.2,
+    "CustomerId": 2,
+    "Name": ""
+  },
+  {
+    "Id": 2,
+    "Iban": "GE91SB4412587693211000",
+    "Currency": "GEL",
+    "Balance": 3500,
+    "CustomerId": 2,
+    "Name": ""
+  },
+  {
+    "Id": 3,
+    "Iban": "GE50SB7844123598745159",
+    "Currency": "GEL",
+    "Balance": 1224,
+    "CustomerId": 2,
+    "Name": ""
+  }
+]
