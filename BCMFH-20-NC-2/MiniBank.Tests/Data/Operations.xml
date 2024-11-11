@@ -1,2 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Operations />
+<Operations>
+  <Operation>
+    <Id>1</Id>
+    <AccountId>1</AccountId>
+    <CustomerId>1</CustomerId>
+    <Type>Credit</Type>
+    <Amount>300</Amount>
+    <HappendAt>2024-11-11T21:42:13.2932801+04:00</HappendAt>
+  </Operation>
+  <Operation>
+    <Id>2</Id>
+    <AccountId>1</AccountId>
+    <CustomerId>1</CustomerId>
+    <Type>Credit</Type>
+    <Amount>100</Amount>
+    <HappendAt>2024-11-11T21:43:58.0524259+04:00</HappendAt>
+  </Operation>
+  <Operation>
+    <Id>3</Id>
+    <AccountId>1</AccountId>
+    <CustomerId>1</CustomerId>
+    <Type>Credit</Type>
+    <Amount>100</Amount>
+    <HappendAt>2024-11-11T21:44:03.0888816+04:00</HappendAt>
+  </Operation>
+</Operations>

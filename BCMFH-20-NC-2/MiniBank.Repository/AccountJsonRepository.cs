@@ -1,4 +1,5 @@
 ﻿using MiniBank.Models;
+using System.Text.Json;
 
 namespace MiniBank.Repository
 {
@@ -12,45 +13,45 @@ namespace MiniBank.Repository
             _filePath = filePath;
             _accounts = LoadData();
         }
-
-        public List<Account> GetAccounts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Account> GetAccounts(int customerId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Account GetAccount(int id)
-        {
-            throw new NotImplementedException();
-        }
-
+        public List<Account> GetAccounts() => _accounts;
+        public Account GetAccount(int id) => _accounts.FirstOrDefault(acc => acc.Id == id);
         public void Create(Account account)
         {
-            throw new NotImplementedException();
+            account.Id = _accounts.Any() ? _accounts.Max(c => c.Id) + 1 : 1;
+            _accounts.Add(account);
+            SaveData();
         }
-
-        public void Update(Account account)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var account = _accounts.FirstOrDefault(a => a.Id == id);
+
+            if (account != null)
+            {
+                _accounts.Remove(account);
+                SaveData();
+            }
+        }
+        public void Update(Account account)
+        {
+            var index = _accounts.FindIndex(a => a.Id == account.Id);
+            if (index >= 0)
+            {
+                _accounts[index] = account;
+                SaveData();
+            }
         }
 
         private void SaveData()
         {
-            throw new NotImplementedException();
+            var json = JsonSerializer.Serialize(_accounts, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(_filePath, json);
         }
-
         private List<Account> LoadData()
         {
-            throw new NotImplementedException();
+            if (!File.Exists(_filePath))
+                return new List<Account>();
+
+            return JsonSerializer.Deserialize<List<Account>>(File.ReadAllText(_filePath));
         }
     }
 }

@@ -17,6 +17,7 @@ namespace MiniBank.Repository
         public List<Operation> GetOperations() => _operations;
         public List<Operation> GetAccountOperations(int accountId) => _operations.Where(op => op.AccountId == accountId).ToList();
         public List<Operation> GetCustomerOperations(int customerId) => _operations.Where(op => op.CustomerId == customerId).ToList();
+        public Operation GetOperation(int id) => _operations.FirstOrDefault(op => op.Id == id);
 
         public void Create(Operation operation)
         {
@@ -38,6 +39,7 @@ namespace MiniBank.Repository
         public void Delete(int id)
         {
             var operation = _operations.FirstOrDefault(op => op.Id == id);
+
             if (operation != null)
             {
                 _operations.Remove(operation);
@@ -47,15 +49,16 @@ namespace MiniBank.Repository
 
         private void SaveData()
         {
-            var doc = new XDocument(new XElement("Operations",
+            var doc = new XDocument(
+                new XElement("Operations",
                     _operations.Select(op =>
-                    new XElement("Operation",
-                        new XElement("Id", op.Id),
-                        new XElement("AccountId", op.AccountId),
-                        new XElement("CustomerId", op.CustomerId),
-                        new XElement("Type", op.OperationType),
-                        new XElement("Amount", op.Amount),
-                        new XElement("HappendAt", op.HappendAt)
+                        new XElement("Operation",
+                            new XElement("Id", op.Id),
+                            new XElement("AccountId", op.AccountId),
+                            new XElement("CustomerId", op.CustomerId),
+                            new XElement("Type", op.OperationType.ToString()),
+                            new XElement("Amount", op.Amount),
+                            new XElement("HappendAt", op.HappendAt)
                         )
                     )
                 )
@@ -69,7 +72,7 @@ namespace MiniBank.Repository
             if (!File.Exists(_filePath))
                 return new List<Operation>();
 
-            if (File.ReadAllText(_filePath).Trim() == "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" || string.IsNullOrWhiteSpace(File.ReadAllText(_filePath).Trim()))
+            if (File.ReadAllText(_filePath).Trim() == "<?xml version=\"1.0\" encoding=\"utf-8\" ?>" || string.IsNullOrWhiteSpace(File.ReadAllText(_filePath)))
                 return new List<Operation>();
 
             var doc = XDocument.Load(_filePath);
@@ -78,15 +81,16 @@ namespace MiniBank.Repository
                 return new List<Operation>();
 
             return doc.Root.Elements("Operation")
-                .Select(op => new Operation()
+                .Select(op => new Operation
                 {
                     Id = (int)op.Element("Id"),
                     AccountId = (int)op.Element("AccountId"),
                     CustomerId = (int)op.Element("CustomerId"),
                     OperationType = Enum.Parse<OperationType>((string)op.Element("Type")),
                     Amount = (decimal)op.Element("Amount"),
-                    HappendAt = DateTime.Parse(op.Element("HappendAt").Value)
-                }).ToList();
+                    HappendAt = DateTime.Parse(op.Element("HappendAt")?.Value ?? DateTime.MinValue.ToString())
+                })
+                .ToList();
         }
     }
 }
