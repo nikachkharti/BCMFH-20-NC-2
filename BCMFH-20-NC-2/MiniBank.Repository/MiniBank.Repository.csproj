@@ -10,8 +10,4 @@
 	  <ProjectReference Include="..\MiniBank.Models\MiniBank.Models.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Data\" />
-	</ItemGroup>
-
 </Project>

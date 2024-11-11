@@ -71,7 +71,7 @@ namespace MiniBank.Repository
                     IdentityNumber = parts[2],
                     PhoneNumber = parts[3],
                     Email = parts[4],
-                    Type = Enum.Parse<Models.Type>(parts[5])
+                    Type = Enum.Parse<Models.AccountType>(parts[5])
                 }).ToList();
         }
     }
