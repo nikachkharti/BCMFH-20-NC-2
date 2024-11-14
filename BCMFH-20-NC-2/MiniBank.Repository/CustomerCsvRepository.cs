@@ -46,7 +46,7 @@ namespace MiniBank.Repository
             }
         }
 
-        private void SaveData()
+        public void SaveData()
         {
             var lines = new List<string> { "Id,Name,IdentityNumber,PhoneNumber,Email,Type" };
 
