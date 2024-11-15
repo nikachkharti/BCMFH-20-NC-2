@@ -41,7 +41,7 @@ namespace MiniBank.Repository
             }
         }
 
-        private void SaveData()
+        public void SaveData()
         {
             var json = JsonSerializer.Serialize(_accounts, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(_filePath, json);
