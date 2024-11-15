@@ -38,19 +38,19 @@ namespace Lecture19
 
 
             //ფაილში ჩაწერა FileStream საშუალებით
-            try
-            {
-                using (FileStream fileSw = new(path, FileMode.Append, FileAccess.Write))
-                {
-                    byte[] data = Encoding.UTF8.GetBytes(textToWrite);
-                    fileSw.Write(data);
-                    Console.WriteLine("Data is written");
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            //try
+            //{
+            //    using (FileStream fileSw = new(path, FileMode.Append, FileAccess.Write))
+            //    {
+            //        byte[] data = Encoding.UTF8.GetBytes(textToWrite);
+            //        fileSw.Write(data);
+            //        Console.WriteLine("Data is written");
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine(ex.Message);
+            //}
 
 
             //ფაილიდან ამოკითხვა FileStream საშუალებით
