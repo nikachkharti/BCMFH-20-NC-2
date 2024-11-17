@@ -46,33 +46,80 @@ namespace MiniBank.Repository
             }
         }
 
-        public void SaveData()
-        {
-            var lines = new List<string> { "Id,Name,IdentityNumber,PhoneNumber,Email,Type" };
+        //public void SaveData()
+        //{
+        //    var lines = new List<string> { "Id,Name,IdentityNumber,PhoneNumber,Email,Type" };
 
-            lines.AddRange(_customers.Select(customer => $"{customer.Id},{customer.Name},{customer.IdentityNumber},{customer.PhoneNumber},{customer.Email},{customer.Type}"));
+        //    lines.AddRange(_customers.Select(customer => $"{customer.Id},{customer.Name},{customer.IdentityNumber},{customer.PhoneNumber},{customer.Email},{customer.Type}"));
 
-            File.WriteAllLines(_filePath, lines);
-        }
+        //    File.WriteAllLines(_filePath, lines);
+        //}
+
+        //private List<Customer> LoadData()
+        //{
+        //    if (!File.Exists(_filePath))
+        //        return new List<Customer>();
+
+        //    return File
+        //        .ReadAllLines(_filePath)
+        //        .Skip(1)
+        //        .Select(line => line.Split(','))
+        //        .Select(parts => new Customer
+        //        {
+        //            Id = int.Parse(parts[0]),
+        //            Name = parts[1],
+        //            IdentityNumber = parts[2],
+        //            PhoneNumber = parts[3],
+        //            Email = parts[4],
+        //            Type = Enum.Parse<Models.AccountType>(parts[5])
+        //        }).ToList();
+        //}
+
 
         private List<Customer> LoadData()
         {
             if (!File.Exists(_filePath))
                 return new List<Customer>();
 
-            return File
-                .ReadAllLines(_filePath)
-                .Skip(1)
-                .Select(line => line.Split(','))
-                .Select(parts => new Customer
+            var customers = new List<Customer>();
+
+            using (var reader = new StreamReader(_filePath))
+            {
+                var headerLine = reader.ReadLine();
+
+                string line;
+                while ((line = reader.ReadLine()) != null)
                 {
-                    Id = int.Parse(parts[0]),
-                    Name = parts[1],
-                    IdentityNumber = parts[2],
-                    PhoneNumber = parts[3],
-                    Email = parts[4],
-                    Type = Enum.Parse<Models.AccountType>(parts[5])
-                }).ToList();
+                    var parts = line.Split(',');
+
+                    var customer = new Customer
+                    {
+                        Id = int.Parse(parts[0]),
+                        Name = parts[1],
+                        IdentityNumber = parts[2],
+                        PhoneNumber = parts[3],
+                        Email = parts[4],
+                        Type = Enum.Parse<Models.AccountType>(parts[5])
+                    };
+
+                    customers.Add(customer);
+                }
+            }
+
+            return customers;
         }
+        public void SaveData()
+        {
+            using (var writer = new StreamWriter(_filePath, append: false)) // 'false' to overwrite the file
+            {
+                writer.WriteLine("Id,Name,IdentityNumber,PhoneNumber,Email,Type");
+
+                foreach (var customer in _customers)
+                {
+                    writer.WriteLine($"{customer.Id},{customer.Name},{customer.IdentityNumber},{customer.PhoneNumber},{customer.Email},{customer.Type}");
+                }
+            }
+        }
+
     }
 }
