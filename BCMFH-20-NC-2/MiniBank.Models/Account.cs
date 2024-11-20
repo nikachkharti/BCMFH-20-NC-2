@@ -6,7 +6,11 @@ namespace MiniBank.Models
     public class Account
     {
         public int Id { get; set; }
+
+        //TODO დაწერეთ ატრიბუტი რომელიც შეამოწმებს რომ Iban აუცილებლად უნდა იყოს 22 სიგრძის
         public string Iban { get; set; }
+
+        //TODO დაწერეთ ატრიბუტი რომელიც შეამოწმებს რომ Currency აუცილებლად უნდა იყოს 3 სიგრძის
         public string Currency { get; set; }
         public decimal Balance { get; set; }
         public int CustomerId { get; set; }
