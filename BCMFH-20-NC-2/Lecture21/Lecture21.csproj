@@ -8,11 +8,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\MiniBank.Models\MiniBank.Models.csproj" />
+		<ProjectReference Include="..\MiniBank.Models\MiniBank.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Dtos\" />
+		<Folder Include="Dtos\" />
 	</ItemGroup>
 
 </Project>
