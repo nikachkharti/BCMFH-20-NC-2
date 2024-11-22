@@ -219,21 +219,21 @@ class CompanyAccount
 
 
 
-static void IncreaseTimer(string name)
-{
-    for (int i = 0; i < 10; i++)
-    {
-        Thread.Sleep(1000);
-        Console.WriteLine($"{name} {i}");
-    }
-}
+//static void IncreaseTimer(string name)
+//{
+//    for (int i = 0; i < 10; i++)
+//    {
+//        Thread.Sleep(1000);
+//        Console.WriteLine($"{name} {i}");
+//    }
+//}
 
-static void DecreaseTimer(string name)
-{
-    for (int i = 10 - 1; i >= 0; i--)
-    {
-        Thread.Sleep(1000);
-        Console.WriteLine($"{name} {i}");
-    }
-}
+//static void DecreaseTimer(string name)
+//{
+//    for (int i = 10 - 1; i >= 0; i--)
+//    {
+//        Thread.Sleep(1000);
+//        Console.WriteLine($"{name} {i}");
+//    }
+//}
 
