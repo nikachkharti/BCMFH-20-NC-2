@@ -1,4 +1,60 @@
 ﻿
+const decimal ticketPrice = 50.0m;
+
+CompanyAccount companyAccount = new("123", 0);
+Customer david = new("David", 100.0m);
+Customer george = new("Georges", 100.0m);
+
+//ყიდვვის ლოგიკა უნდა იყოს მრავალნაკადური
+
+void PurchaseTicket(Customer customer)
+{
+    if (customer.Balance > ticketPrice)
+    {
+        Thread.Sleep(10);
+        customer.Balance -= ticketPrice;
+        companyAccount.Balance += ticketPrice;
+
+        Console.WriteLine($"{customer.Name} has {customer.Balance}$");
+        Console.WriteLine($"Company has {companyAccount.Balance}$");
+    }
+}
+
+
+
+public class Customer
+{
+    public string Name { get; set; }
+    public decimal Balance { get; set; }
+
+    public Customer(string name, decimal balance)
+    {
+        Name = name;
+        Balance = balance;
+    }
+}
+
+class CompanyAccount
+{
+    public string AccountNumber { get; set; }
+    public decimal Balance { get; set; }
+
+    public CompanyAccount(string accountNumber, decimal balance)
+    {
+        AccountNumber = accountNumber;
+        Balance = balance;
+    }
+}
+
+
+
+
+
+
+
+
+
+
 #region 1
 //Thread.CurrentThread.Name = "Main Thread";
 //Thread.CurrentThread.Priority = ThreadPriority.Lowest;
