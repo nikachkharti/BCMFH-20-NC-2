@@ -55,6 +55,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture22", "Lecture22\Lect
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniBank.UI", "MiniBank.UI\MiniBank.UI.csproj", "{83AEF3A5-E6FB-425F-80D3-46FED303ACB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lecture23", "Lecture23\Lecture23.csproj", "{65B4CA4C-FF82-4A47-80CE-7D8B3ED254A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -161,6 +163,10 @@ Global
 		{83AEF3A5-E6FB-425F-80D3-46FED303ACB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83AEF3A5-E6FB-425F-80D3-46FED303ACB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83AEF3A5-E6FB-425F-80D3-46FED303ACB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B4CA4C-FF82-4A47-80CE-7D8B3ED254A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B4CA4C-FF82-4A47-80CE-7D8B3ED254A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B4CA4C-FF82-4A47-80CE-7D8B3ED254A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B4CA4C-FF82-4A47-80CE-7D8B3ED254A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
