@@ -1,6 +1,6 @@
 ﻿namespace MiniBank.Models
 {
-    public enum AccountType : byte
+    public enum CustomerType : byte
     {
         Phyisical = 0,
         Legal = 1
