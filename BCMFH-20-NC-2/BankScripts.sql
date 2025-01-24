@@ -95,3 +95,93 @@
 --	DELETE FROM Customers
 --	WHERE Id = @customerId
 --END
+
+
+--CREATE PROCEDURE spGetAccounts
+--AS
+--BEGIN
+--	SELECT*FROM Accounts
+--END
+
+
+--CREATE PROCEDURE spGetAccount
+--@accountId INT
+--AS
+--BEGIN
+--	SELECT*FROM Accounts
+--	WHERE Id = @accountId 
+--END
+
+
+--CREATE PROCEDURE spGetAccountsOfCustomer
+--@customerId INT
+--AS
+--BEGIN
+--	SELECT*FROM Accounts
+--	WHERE CustomerId = @customerId
+--END
+
+
+
+--CREATE PROCEDURE spCreateAccount
+--@iban CHAR(22),
+--@currency CHAR(3),
+--@balance MONEY,
+--@name NVARCHAR(MAX),
+--@customerId INT
+--AS
+--BEGIN
+--	INSERT INTO Accounts(Iban,Currency,Balance,[Name],CustomerId)
+--	VALUES(@iban,@currency,@balance,@name,@customerId)
+--END
+
+
+--CREATE PROCEDURE spUpdateAccount
+--@accountId INT,
+--@iban CHAR(22),
+--@currency CHAR(3),
+--@balance MONEY,
+--@name NVARCHAR(MAX),
+--@customerId INT
+--AS
+--BEGIN
+--	UPDATE Accounts
+--	SET
+--		Iban = @iban,
+--		Currency = @currency,
+--		Balance = @balance,
+--		[Name] = @name
+--	WHERE CustomerId = @customerId
+--END
+
+
+--CREATE PROCEDURE spDeleteAccount
+--@accountId INT
+--AS
+--BEGIN
+--	DELETE FROM Accounts
+--	WHERE Id = @accountId
+--END
+
+
+--CREATE PROCEDURE spGetOperationsOfAccount
+--@accountId INT
+--AS
+--BEGIN
+--	SELECT*
+--	FROM Operations
+--	WHERE AccountId = @accountId
+--END
+
+
+--CREATE PROCEDURE spCreateOperation
+--@operationType TINYINT,
+--@currency CHAR(3),
+--@amount MONEY,
+--@happendAt DATETIME,
+--@accountId INT
+--AS
+--BEGIN
+--	INSERT INTO Operations (OperationType,Currency,Amount,HappendAt,AccountId)
+--	VALUES(@operationType,@currency,@amount,@happendAt,@accountId)
+--END

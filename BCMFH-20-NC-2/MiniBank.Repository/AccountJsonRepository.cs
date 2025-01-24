@@ -14,6 +14,7 @@ namespace MiniBank.Repository
             _accounts = LoadData();
         }
         public List<Account> GetAccounts() => _accounts;
+        public List<Account> GetAccountsOfCustomer(int customerId) => _accounts.Where(c => c.CustomerId == customerId).ToList();
         public Account GetAccount(int id) => _accounts.FirstOrDefault(acc => acc.Id == id);
         public void Create(Account account)
         {

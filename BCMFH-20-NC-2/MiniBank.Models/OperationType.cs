@@ -3,7 +3,6 @@
     public enum OperationType : byte
     {
         Debit = 0,
-        Credit = 1,
-        Transfer = 2
+        Credit = 1
     }
 }

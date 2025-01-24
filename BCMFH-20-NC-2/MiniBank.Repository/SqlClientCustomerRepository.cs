@@ -3,18 +3,6 @@ using Microsoft.Data.SqlClient;
 using System.Data;
 using System.Reflection;
 
-//TODO 1.შეასრულეთ მოქმედებები პროცედურების გამოყენებით:
-//  GetAccounts - ყველა ანგარიშის წამოღება,
-//  GetAccountsOfCustomer - ყველა ანგარიშის წამოღება CustomerId - ის გამოყენებით,
-//  GetAccount - კონკრეტული ანგარიშის აღება Account - ის id ის გამოყენებით,
-//  Create - ანგარიში შექმნა,
-//  Update - ანგარიშის განხლება,
-//  Delete - ანგარიშისს წაშლა
-//TODO 2. დააკავშირეთ აპლიკაციას თქვები ბაზა და პროცედურები გამოიძახეთ შესაბამის ფუნქციებში.
-//TODO 3. გატესტეთ მუშაობს თუ არა თქვენი აპლიკაცია.
-//!!!!!!!!!!!!!!ეს ყველაფერი დაწეროთ ისე რომ არსად ჩაიხედოთ!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
 namespace MiniBank.Repository
 {
     public class SqlClientCustomerRepository
