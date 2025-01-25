@@ -25,10 +25,10 @@ namespace MiniBank.Tests
         {
             Account account = new()
             {
-                Iban = "GEL4567894512345678945",
+                Iban = "GEL4567894512345678910",
                 Balance = 10,
                 Currency = "GEL",
-                CustomerId = 2,
+                CustomerId = 4,
                 Name = "Salary"
             };
 

@@ -24,10 +24,10 @@ namespace MiniBank.Tests
         {
             Customer newCustomer = new()
             {
-                Email = "Giorgi@gmail.com",
-                IdentityNumber = "12356987415",
-                PhoneNumber = "559887744",
-                Name = "Giorgi Otarashvili",
+                Email = "Davit@gmail.com",
+                IdentityNumber = "01024087596",
+                PhoneNumber = "558779966",
+                Name = "Davit Davitashvili",
                 Type = CustomerType.Phyisical
             };
 

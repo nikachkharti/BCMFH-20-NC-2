@@ -185,3 +185,12 @@
 --	INSERT INTO Operations (OperationType,Currency,Amount,HappendAt,AccountId)
 --	VALUES(@operationType,@currency,@amount,@happendAt,@accountId)
 --END
+
+
+--CREATE PROCEDURE spGetAccountWithIban
+--@iban INT
+--AS
+--BEGIN
+--	SELECT*FROM Accounts
+--	WHERE Iban = @iban
+--END
