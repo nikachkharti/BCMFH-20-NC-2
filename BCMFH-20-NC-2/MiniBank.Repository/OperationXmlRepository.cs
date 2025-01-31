@@ -24,7 +24,6 @@ namespace MiniBank.Repository
 
         public List<Operation> GetOperations() => _operations;
         public List<Operation> GetAccountOperations(int accountId) => _operations.Where(op => op.AccountId == accountId).ToList();
-        public List<Operation> GetCustomerOperations(int customerId) => _operations.Where(op => op.CustomerId == customerId).ToList();
         public Operation GetOperation(int id) => _operations.FirstOrDefault(op => op.Id == id);
 
         public void Credit(Operation operation)
@@ -100,7 +99,6 @@ namespace MiniBank.Repository
                         new XElement("Operation",
                             new XElement("Id", op.Id),
                             new XElement("AccountId", op.AccountId),
-                            new XElement("CustomerId", op.CustomerId),
                             new XElement("Type", op.OperationType.ToString()),
                             new XElement("Currency", op.Currency),
                             new XElement("Amount", op.Amount),
@@ -131,7 +129,6 @@ namespace MiniBank.Repository
                 {
                     Id = (int)op.Element("Id"),
                     AccountId = (int)op.Element("AccountId"),
-                    CustomerId = (int)op.Element("CustomerId"),
                     OperationType = Enum.Parse<OperationType>((string)op.Element("Type")),
                     Currency = (string)op.Element("Currency"),
                     Amount = (decimal)op.Element("Amount"),

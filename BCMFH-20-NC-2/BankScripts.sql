@@ -3,6 +3,7 @@
 
 --USE MiniBankBCMFH20NC
 --GO
+
 --CREATE TABLE Customers
 --(
 --	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,
@@ -184,13 +185,4 @@
 --BEGIN
 --	INSERT INTO Operations (OperationType,Currency,Amount,HappendAt,AccountId)
 --	VALUES(@operationType,@currency,@amount,@happendAt,@accountId)
---END
-
-
---CREATE PROCEDURE spGetAccountWithIban
---@iban INT
---AS
---BEGIN
---	SELECT*FROM Accounts
---	WHERE Iban = @iban
 --END

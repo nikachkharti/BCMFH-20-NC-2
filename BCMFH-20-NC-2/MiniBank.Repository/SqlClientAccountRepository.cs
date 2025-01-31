@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using MiniBank.Models;
+using MiniBank.Repository.Interfaces;
 using System.Data;
 
 namespace MiniBank.Repository
@@ -8,37 +9,22 @@ namespace MiniBank.Repository
     {
         private const string _connectionString = "Server=DESKTOP-SCSHELD\\SQLEXPRESS;Database=MiniBankBCMFH20NC;Trusted_Connection=true;TrustServerCertificate=true";
 
+        private readonly IRepository<Account> _repository;
+
+        public SqlClientAccountRepository()
+        {
+            _repository = new Repositroy<Account>(_connectionString);
+        }
+
+
         public async Task<List<Account>> GetAccounts()
         {
             string commandText = "spGetAccounts";
-            List<Account> result = new();
+            var result = await _repository.GetAll(commandText, null, CommandType.StoredProcedure);
 
-            using (SqlConnection connection = new(_connectionString))
-            {
-                using (SqlCommand command = new(commandText, connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
-                    await connection.OpenAsync();
-
-                    SqlDataReader reader = await command.ExecuteReaderAsync();
-
-                    while (await reader.ReadAsync())
-                    {
-                        Account account = new();
-                        account.Id = reader.GetInt32(0);
-                        account.Iban = reader.GetString(1);
-                        account.Currency = reader.GetString(2);
-                        account.Balance = reader.GetDecimal(3);
-                        account.Name = reader.GetString(4);
-                        account.CustomerId = reader.GetInt32(5);
-
-                        result.Add(account);
-                    }
-                }
-            }
-
-            return result;
+            return result.ToList();
         }
+
         public async Task<List<Account>> GetAccountsOfCustomer(int customerId)
         {
             string commandText = "spGetAccountsOfCustomer";
