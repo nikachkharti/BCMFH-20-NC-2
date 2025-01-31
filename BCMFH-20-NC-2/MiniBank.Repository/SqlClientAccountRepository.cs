@@ -16,7 +16,6 @@ namespace MiniBank.Repository
             _repository = new Repositroy<Account>(_connectionString);
         }
 
-
         public async Task<List<Account>> GetAccounts()
         {
             string commandText = "spGetAccounts";
@@ -24,7 +23,6 @@ namespace MiniBank.Repository
 
             return result.ToList();
         }
-
         public async Task<List<Account>> GetAccountsOfCustomer(int customerId)
         {
             string commandText = "spGetAccountsOfCustomer";

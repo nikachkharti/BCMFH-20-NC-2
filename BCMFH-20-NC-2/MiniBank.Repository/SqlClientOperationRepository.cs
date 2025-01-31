@@ -9,7 +9,6 @@ namespace MiniBank.Repository
         private const string _connectionString = "Server=DESKTOP-SCSHELD\\SQLEXPRESS;Database=MiniBankBCMFH20NC;Trusted_Connection=true;TrustServerCertificate=true";
         SqlClientAccountRepository sqlClietnAccountRepository = new();
 
-
         public async Task Withdraw(int accountId, decimal amount)
         {
             if (amount <= 0 || accountId <= 0)
@@ -43,7 +42,6 @@ namespace MiniBank.Repository
                 AccountId = account.Id
             });
         }
-
         public async Task Insert(int accountId, decimal amount)
         {
             if (amount <= 0 || accountId <= 0)
@@ -72,7 +70,6 @@ namespace MiniBank.Repository
                 AccountId = account.Id
             });
         }
-
         public async Task Transfer(int sourceAccountId, int destinationAccountId, decimal amount)
         {
             if (amount <= 0 || sourceAccountId <= 0 || destinationAccountId <= 0)
@@ -143,7 +140,6 @@ namespace MiniBank.Repository
                 }
             }
         }
-
 
     }
 }
