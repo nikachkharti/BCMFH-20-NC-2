@@ -16,7 +16,7 @@ namespace MiniBank.Tests
         [Fact]
         public async Task Get_Single_Customer()
         {
-            var result = await _sqlClientCustomerRepository.GetCustomer(1);
+            var result = await _sqlClientCustomerRepository.GetCustomer(2);
         }
 
         [Fact]
@@ -24,10 +24,10 @@ namespace MiniBank.Tests
         {
             Customer newCustomer = new()
             {
-                Email = "Giorgi@gmail.com",
-                IdentityNumber = "12356987415",
-                PhoneNumber = "559887744",
-                Name = "Giorgi Otarashvili",
+                Email = "Davit@gmail.com",
+                IdentityNumber = "01024087596",
+                PhoneNumber = "558779966",
+                Name = "Davit Davitashvili",
                 Type = CustomerType.Phyisical
             };
 
@@ -39,7 +39,7 @@ namespace MiniBank.Tests
         {
             Customer updatedCustomer = new()
             {
-                Id = 1,
+                Id = 4,
                 Email = "Davit@gmail.com",
                 IdentityNumber = "12356987415",
                 PhoneNumber = "559887744",
@@ -53,7 +53,7 @@ namespace MiniBank.Tests
         [Fact]
         public async Task Delete_Customer()
         {
-            await _sqlClientCustomerRepository.Delete(1);
+            await _sqlClientCustomerRepository.Delete(4);
         }
     }
 }

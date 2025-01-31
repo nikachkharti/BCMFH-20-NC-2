@@ -3,6 +3,7 @@
 
 --USE MiniBankBCMFH20NC
 --GO
+
 --CREATE TABLE Customers
 --(
 --	Id INT PRIMARY KEY IDENTITY(1,1) NOT NULL,

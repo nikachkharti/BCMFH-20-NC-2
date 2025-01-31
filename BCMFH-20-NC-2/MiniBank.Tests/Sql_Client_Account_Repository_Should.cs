@@ -25,10 +25,10 @@ namespace MiniBank.Tests
         {
             Account account = new()
             {
-                Iban = "GEL4567894512345678945",
+                Iban = "GEL4567894512345678911",
                 Balance = 10,
                 Currency = "GEL",
-                CustomerId = 2,
+                CustomerId = 1,
                 Name = "Salary"
             };
 
@@ -41,10 +41,10 @@ namespace MiniBank.Tests
         {
             Account account = new()
             {
-                Iban = "GEL4567894512345678945",
+                Iban = "GEL4567894512345678910",
                 Balance = 100,
                 Currency = "GEL",
-                CustomerId = 2,
+                CustomerId = 3,
                 Name = "Salary"
             };
 
@@ -55,7 +55,7 @@ namespace MiniBank.Tests
         [Fact]
         public async Task Delete_Account()
         {
-            await _sqlClientAccountRepository.Delete(4);
+            await _sqlClientAccountRepository.Delete(3);
         }
     }
 }
