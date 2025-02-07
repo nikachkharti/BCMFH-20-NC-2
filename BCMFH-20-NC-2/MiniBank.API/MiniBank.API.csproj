@@ -14,4 +14,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MiniBank.Services\MiniBank.Services.csproj" />
+  </ItemGroup>
+
 </Project>
