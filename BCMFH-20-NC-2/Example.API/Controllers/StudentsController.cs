@@ -1,14 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Example.API.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace MiniBank.API.Controllers
+namespace Example.API.Controllers
 {
-    public class Student
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int SubjectId { get; set; }
-    }
-
     [ApiController]
     [Route("students")]
     public class StudentsController : ControllerBase
