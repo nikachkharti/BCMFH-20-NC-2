@@ -1,4 +1,6 @@
 ﻿using Example.API.Models;
+using Example.API.Services;
+using Example.API.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Example.API.Controllers
@@ -7,19 +9,25 @@ namespace Example.API.Controllers
     [Route("students")]
     public class StudentsController : ControllerBase
     {
-
+        private readonly IStudentService _studentSerivce;
+        public StudentsController(IStudentService studentService)
+        {
+            _studentSerivce = studentService;
+        }
 
         [HttpGet]
         public IActionResult GetAllStudents()
         {
-            throw new NotImplementedException();
+            var result = _studentSerivce.GetAllStudents();
+            return Ok(result);
         }
 
 
         [HttpGet("{id}")]
         public IActionResult GetSingleStudent([FromRoute] int id)
         {
-            throw new NotImplementedException();
+            var result = _studentSerivce.GetSingleStudent(id);
+            return Ok(result);
         }
 
 

@@ -4,13 +4,13 @@ using Example.API.Services.Interfaces;
 
 namespace Example.API.Services
 {
-    public class StudentService : IStudentService
+    public class StudentServiceTwo : IStudentService
     {
         private static List<Student> _students = new()
         {
-            new Student() { Id = 1, Name = "Giorgi Otarashvili"},
-            new Student() { Id = 2, Name = "Ketevan Gomiashvili"},
-            new Student() { Id = 3, Name = "Luka Jamrishvili"}
+            new Student() { Id = 1, Name = "Mariami Nachkebia"},
+            new Student() { Id = 2, Name = "Mikheil NIkoleishvili"},
+            new Student() { Id = 3, Name = "Levan Gagnidze"}
         };
 
         public List<Student> GetAllStudents()
@@ -85,6 +85,5 @@ namespace Example.API.Services
 
             _students.Add(model);
         }
-
     }
 }

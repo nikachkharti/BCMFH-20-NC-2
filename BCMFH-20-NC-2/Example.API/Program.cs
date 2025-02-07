@@ -1,3 +1,6 @@
+﻿
+using Example.API.Services;
+using Example.API.Services.Interfaces;
 
 namespace Example.API
 {
@@ -7,15 +10,20 @@ namespace Example.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            //Singleton - ნიშნავს რომ რეგისტრირებული სერვისის მხოლოდ 1 ინსტანსი მოემსახურება მთელს აპლიკაციას, სანამ აპლიკაცია აქტიურია. ყველაზე სიცოცხლისუნარიანი
+            //builder.Services.AddSingleton<IStudentService, StudentService>();
+
+            //Scoped - ყოველი ახალი ინსტანსი იქმნება მხოლოდ კონკრეტული  scope - ის შიგნით. საშუალოდ სიცოცხლისუნარიანი.
+            builder.Services.AddScoped<IStudentService, StudentService>();
+
+            //Transient - ნიშნავს რომ ყოველ ჯერზე სერვისის გამოყენებისას ძველი ინსტანსი განადგურდება (Dispose) ახალი ინსტანსი შეიქმენბა.ყველაზე ხანმოკლე სიცოცხლის მქონე.
+            //builder.Services.AddTransient<IStudentService, StudentService>();
 
             builder.Services.AddControllers();
-            // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
