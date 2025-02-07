@@ -1,3 +1,7 @@
+using MiniBank.Repository;
+using MiniBank.Repository.Interfaces;
+using MiniBank.Services;
+using MiniBank.Services.Interfaces;
 
 namespace MiniBank.API
 {
@@ -7,6 +11,8 @@ namespace MiniBank.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddScoped<ICustomerRepository, SqlClientCustomerRepository>();
+            builder.Services.AddScoped<ICustomerService, CustomerService>();
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
 

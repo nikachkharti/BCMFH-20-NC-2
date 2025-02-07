@@ -2,7 +2,6 @@
 using MiniBank.Repository.Interfaces;
 using System.Data;
 using System.Reflection;
-using System.Security.Cryptography;
 
 namespace MiniBank.Repository
 {
