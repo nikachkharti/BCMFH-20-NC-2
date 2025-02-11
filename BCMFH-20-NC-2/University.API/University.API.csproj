@@ -15,10 +15,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Controllers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <ProjectReference Include="..\University.Models\University.Models.csproj" />
 	  <ProjectReference Include="..\University.Repository\University.Repository.csproj" />
 	  <ProjectReference Include="..\University.Service\University.Service.csproj" />
