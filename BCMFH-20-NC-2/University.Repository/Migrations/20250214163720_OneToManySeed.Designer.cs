@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using University.Repository.Data;
 
@@ -11,9 +12,11 @@ using University.Repository.Data;
 namespace University.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250214163720_OneToManySeed")]
+    partial class OneToManySeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,85 +123,6 @@ namespace University.Repository.Migrations
                             Id = 4,
                             TeacherId = 2,
                             Title = "Markup"
-                        });
-                });
-
-            modelBuilder.Entity("University.Models.Entities.Group", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("Groups");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CourseId = 1,
-                            Name = "BCMFH-20-NC",
-                            StudentId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CourseId = 1,
-                            Name = "BCMFH-20-NC",
-                            StudentId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CourseId = 1,
-                            Name = "BCMFH-20-NC",
-                            StudentId = 3
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CourseId = 2,
-                            Name = "DBMFH-20-NC",
-                            StudentId = 3
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CourseId = 3,
-                            Name = "FEMFH-20-NC",
-                            StudentId = 3
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CourseId = 4,
-                            Name = "FEMFH-20-NC",
-                            StudentId = 1
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CourseId = 4,
-                            Name = "FEMFH-20-NC",
-                            StudentId = 2
                         });
                 });
 
@@ -311,35 +235,9 @@ namespace University.Repository.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("University.Models.Entities.Group", b =>
-                {
-                    b.HasOne("University.Models.Entities.Course", "Course")
-                        .WithMany("Groups")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("University.Models.Entities.Student", "Student")
-                        .WithMany("Groups")
-                        .HasForeignKey("StudentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Course");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("University.Models.Entities.Course", b =>
-                {
-                    b.Navigation("Groups");
-                });
-
             modelBuilder.Entity("University.Models.Entities.Student", b =>
                 {
                     b.Navigation("Address");
-
-                    b.Navigation("Groups");
                 });
 
             modelBuilder.Entity("University.Models.Entities.Teacher", b =>

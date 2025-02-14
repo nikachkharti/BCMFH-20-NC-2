@@ -28,5 +28,11 @@ namespace University.Models.Entities
 
         [Column(TypeName = "datetime2")]
         public DateTime BirthDate { get; set; }
+
+        //1x1
+        public Address Address { get; set; }
+
+        //MxM
+        public List<Group> Groups { get; set; }
     }
 }
