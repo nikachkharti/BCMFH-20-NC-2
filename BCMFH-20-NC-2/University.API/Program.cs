@@ -15,9 +15,10 @@ namespace University.API
             builder.Services.AddOpenApi();
             builder.Services
                 .AddDbContext<ApplicationDbContext>(options => options
-                .UseSqlServer("Server=DESKTOP-SCSHELD\\SQLEXPRESS;Database=UniversityBCMFH20NC;Trusted_Connection=true;TrustServerCertificate=true"));
+                .UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
 
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+            builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 
             var app = builder.Build();
 
