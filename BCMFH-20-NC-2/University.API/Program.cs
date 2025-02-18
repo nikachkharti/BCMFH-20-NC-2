@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using University.Repository.Data;
+using University.Repository.Implementations;
+using University.Repository.Interfaces;
 
 namespace University.API
 {
@@ -14,6 +16,8 @@ namespace University.API
             builder.Services
                 .AddDbContext<ApplicationDbContext>(options => options
                 .UseSqlServer("Server=DESKTOP-SCSHELD\\SQLEXPRESS;Database=UniversityBCMFH20NC;Trusted_Connection=true;TrustServerCertificate=true"));
+
+            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 
             var app = builder.Build();
 

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using University.Models.Entities;
-using University.Repository.Data;
+using University.Repository.Interfaces;
 
 namespace University.API.Controllers
 {
@@ -8,64 +8,50 @@ namespace University.API.Controllers
     [ApiController]
     public class StudentsController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IStudentRepository _studentRepository;
 
-        public StudentsController(ApplicationDbContext context)
+        public StudentsController(IStudentRepository studentRepository)
         {
-            _context = context;
+            _studentRepository = studentRepository;
         }
 
 
         [HttpGet]
-        public IActionResult GetAllStudents()
+        public async Task<IActionResult> GetAllStudents()
         {
-            var result = _context.Students.ToList();
+            var result = await _studentRepository.GetAll();
             return Ok(result);
         }
 
 
         [HttpGet("{id}")]
-        public IActionResult GetSingleStudent([FromRoute] int id)
+        public async Task<IActionResult> GetSingleStudent([FromRoute] int id)
         {
-            var result = _context.Students.FirstOrDefault(x => x.Id == id);
+            var result = await _studentRepository.Get(id);
             return Ok(result);
         }
 
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteStudent([FromRoute] int id)
+        public async Task<IActionResult> DeleteStudent([FromRoute] int id)
         {
-            var studentToDelete = _context.Students.FirstOrDefault(x => x.Id == id);
-            _context.Students.Remove(studentToDelete);
-            _context.SaveChanges();
-
+            await _studentRepository.Delete(id);
             return Ok();
         }
 
 
         [HttpPost]
-        public IActionResult AddStudent([FromBody] Student model)
+        public async Task<IActionResult> AddStudent([FromBody] Student model)
         {
-            _context.Students.Add(model);
-            _context.SaveChanges();
-
+            await _studentRepository.Add(model);
             return Ok();
         }
 
 
         [HttpPut]
-        public IActionResult UpdateStudent([FromBody] Student model)
+        public async Task<IActionResult> UpdateStudent([FromBody] Student model)
         {
-            var studentToUpdate = _context.Students.FirstOrDefault(x => x.Id == model.Id);
-
-            studentToUpdate.Name = model.Name;
-            studentToUpdate.PersonalNumber = model.PersonalNumber;
-            studentToUpdate.Email = model.Email;
-            studentToUpdate.BirthDate = model.BirthDate;
-
-            _context.Students.Update(studentToUpdate);
-            _context.SaveChanges();
-
+            await _studentRepository.Update(model);
             return Ok();
         }
 
