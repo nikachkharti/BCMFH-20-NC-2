@@ -11,6 +11,12 @@ namespace University.Repository.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ConfigureStudents();
+            modelBuilder.ConfiugreAddresses();
+            modelBuilder.ConfiugreTeachers();
+            modelBuilder.ConfiugreGroups();
+            modelBuilder.ConfiugreCourses();
+
             modelBuilder.SeedStudents();
             modelBuilder.SeedAddresses();
             modelBuilder.SeedTeachers();

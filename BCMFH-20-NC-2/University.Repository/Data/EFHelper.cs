@@ -1,10 +1,159 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using University.Models.Entities;
 
 namespace University.Repository.Data
 {
-    public static class DataSeeder
+    public static class EFHelper
     {
+
+        public static void ConfigureStudents(this ModelBuilder modelBuilder)
+        {
+            //Student Entity
+            modelBuilder.Entity<Student>(entity =>
+            {
+                entity.HasKey(s => s.Id);
+                entity
+                    .Property(s => s.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity
+                    .Property(s => s.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity
+                    .Property(s => s.PersonalNumber)
+                    .IsRequired()
+                    .HasColumnType("char(11)")
+                    .HasMaxLength(11);
+
+                entity
+                    .Property(s => s.Email)
+                    .IsRequired()
+                    .HasColumnType("varchar(50)")
+                    .HasMaxLength(50);
+
+                entity
+                    .Property(s => s.BirthDate)
+                    .HasColumnType("datetime2");
+
+                entity
+                    .HasOne(s => s.Address)
+                    .WithOne(a => a.Student)
+                    .HasForeignKey<Address>(a => a.StudentId);
+
+                entity
+                    .HasMany(s => s.Groups)
+                    .WithOne(g => g.Student)
+                    .HasForeignKey(g => g.StudentId);
+            });
+        }
+        public static void ConfiugreAddresses(this ModelBuilder modelBuilder)
+        {
+            //Address Entity
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.HasKey(a => a.Id);
+                entity
+                    .Property(a => a.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity
+                    .Property(a => a.City)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity
+                    .Property(a => a.Street)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity
+                    .HasOne(a => a.Student)
+                    .WithOne(s => s.Address)
+                    .HasForeignKey<Address>(a => a.StudentId);
+            });
+        }
+        public static void ConfiugreTeachers(this ModelBuilder modelBuilder)
+        {
+            //Teacher Entity
+            modelBuilder.Entity<Teacher>(entity =>
+            {
+                entity.HasKey(t => t.Id);
+                entity
+                    .Property(t => t.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity
+                    .Property(t => t.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity
+                    .HasMany(t => t.Courses)
+                    .WithOne(c => c.Teacher)
+                    .HasForeignKey(c => c.TeacherId);
+            });
+        }
+        public static void ConfiugreGroups(this ModelBuilder modelBuilder)
+        {
+            //Group Entity
+            modelBuilder.Entity<Group>(entity =>
+            {
+                entity.HasKey(g => g.Id);
+                entity
+                    .Property(g => g.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity
+                    .Property(g => g.Name)
+                    .IsRequired()
+                    .HasMaxLength(100);
+
+                entity
+                    .HasOne(g => g.Student)
+                    .WithMany(s => s.Groups)
+                    .HasForeignKey(g => g.StudentId);
+
+                entity
+                    .HasOne(g => g.Course)
+                    .WithMany(c => c.Groups)
+                    .HasForeignKey(g => g.CourseId);
+            });
+        }
+        public static void ConfiugreCourses(this ModelBuilder modelBuilder)
+        {
+            //Course Entity
+            modelBuilder.Entity<Course>(entity =>
+            {
+                entity.HasKey(c => c.Id);
+                entity
+                    .Property(c => c.Id)
+                    .ValueGeneratedOnAdd()
+                    .IsRequired();
+
+                entity
+                    .Property(c => c.Title)
+                    .IsRequired()
+                    .HasMaxLength(70);
+
+                entity
+                    .HasOne(c => c.Teacher)
+                    .WithMany(t => t.Courses)
+                    .HasForeignKey(c => c.TeacherId);
+
+                entity
+                    .HasMany(c => c.Groups)
+                    .WithOne(g => g.Course)
+                    .HasForeignKey(g => g.CourseId);
+            });
+        }
+
         public static void SeedStudents(this ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Student>().HasData(

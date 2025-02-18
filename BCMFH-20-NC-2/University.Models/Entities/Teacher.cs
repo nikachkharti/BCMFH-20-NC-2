@@ -5,13 +5,13 @@ namespace University.Models.Entities
 {
     public class Teacher
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Required]
+        //[Key]
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //[Required]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+        //[Required]
+        //[MaxLength(50)]
         public string Name { get; set; }
 
         //1xM
