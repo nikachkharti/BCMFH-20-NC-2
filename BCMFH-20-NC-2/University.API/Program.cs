@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using University.Repository.Data;
 using University.Repository.Implementations;
 using University.Repository.Interfaces;
+using University.Service.Implementations;
+using University.Service.Interfaces;
 
 namespace University.API
 {
@@ -19,6 +21,8 @@ namespace University.API
 
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+
+            builder.Services.AddScoped<ITeacherService, TeacherService>();
 
             var app = builder.Build();
 

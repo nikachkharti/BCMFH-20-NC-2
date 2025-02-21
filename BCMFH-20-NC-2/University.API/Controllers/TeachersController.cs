@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using University.Models.Dtos.Teacher;
 using University.Models.Entities;
 using University.Repository.Interfaces;
+using University.Service.Interfaces;
 
 namespace University.API.Controllers
 {
@@ -9,31 +11,31 @@ namespace University.API.Controllers
     [ApiController]
     public class TeachersController : ControllerBase
     {
-        private readonly ITeacherRepository _teacherRepository;
-        public TeachersController(ITeacherRepository teacherRepository)
+        private readonly ITeacherService _teacherService;
+        public TeachersController(ITeacherService teacherService)
         {
-            _teacherRepository = teacherRepository;
+            _teacherService = teacherService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTeacher([FromBody] Teacher model)
+        public async Task<IActionResult> AddTeacher([FromBody] TeacherForCreatingDto model)
         {
-            await _teacherRepository.Add(model);
-            return Ok();
+            await _teacherService.AddNewTeacher(model);
+            return Created();
         }
 
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacher([FromRoute] int id)
         {
-            await _teacherRepository.Delete(id);
-            return Ok();
+            await _teacherService.DeleteTeacher(id);
+            return NoContent();
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateTeacher([FromBody] Teacher model)
+        public async Task<IActionResult> UpdateTeacher([FromBody] TeacherForUpdatingDto model)
         {
-            await _teacherRepository.Update(model);
+            await _teacherService.UpdateTeacher(model);
             return Ok();
         }
 
@@ -41,15 +43,14 @@ namespace University.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTeachers()
         {
-            var result = await _teacherRepository.GetAll();
-            return Ok(result);
+            return Ok();
         }
 
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTeacher([FromRoute] int id)
         {
-            var result = await _teacherRepository.Get(id);
+            var result = await _teacherService.GetSingleTeacher(id);
             return Ok(result);
         }
     }
