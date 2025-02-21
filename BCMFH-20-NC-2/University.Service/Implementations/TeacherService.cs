@@ -1,4 +1,5 @@
-﻿using University.Models.Dtos.Course;
+﻿using AutoMapper;
+using University.Models.Dtos.Course;
 using University.Models.Dtos.Teacher;
 using University.Models.Entities;
 using University.Repository.Interfaces;
@@ -10,13 +11,31 @@ namespace University.Service.Implementations
     public class TeacherService : ITeacherService
     {
         private readonly ITeacherRepository _teacherRepository;
-        public TeacherService(ITeacherRepository teacherRepository)
+        private readonly IMapper _mapper;
+        public TeacherService(ITeacherRepository teacherRepository, IMapper mapper)
         {
             _teacherRepository = teacherRepository;
+            _mapper = mapper;
+        }
+
+        public async Task<List<TeacherForGettingDto>> GetMultipleTeachers()
+        {
+            List<Teacher> entityData = await _teacherRepository.GetAll();
+            List<TeacherForGettingDto> result = new();
+
+            if (entityData.Any())
+            {
+                var mappedData = _mapper.Map<List<TeacherForGettingDto>>(entityData);
+                result.AddRange(mappedData);
+            }
+
+            return result;
         }
 
         public async Task<TeacherForGettingDto> GetSingleTeacher(int teacherId)
         {
+            TeacherForGettingDto result = new();
+
             if (teacherId <= 0)
                 throw new BadRequestException($"{teacherId} is an invalid argument");
 
@@ -25,25 +44,10 @@ namespace University.Service.Implementations
             if (entityData is null)
                 throw new NotFoundException($"{entityData} not found");
 
-            List<CourseForGettingDto> courses = new();
-
-            TeacherForGettingDto result = new();
-            result.Id = entityData.Id;
-            result.Name = entityData.Name;
-
             if (entityData.Courses.Any())
             {
-                foreach (var courseEntity in entityData.Courses)
-                {
-                    courses.Add(new CourseForGettingDto()
-                    {
-                        Id = courseEntity.Id,
-                        Title = courseEntity.Title
-                    });
-                }
+                result = _mapper.Map<TeacherForGettingDto>(entityData);
             }
-
-            result.Courses = courses;
 
             return result;
         }
@@ -55,7 +59,7 @@ namespace University.Service.Implementations
                 throw new BadRequestException($"{teacherForCreatingDto} is an invalid argument");
             }
 
-            var entityData = new Teacher() { Name = teacherForCreatingDto.Name };
+            var entityData = _mapper.Map<Teacher>(teacherForCreatingDto);
             await _teacherRepository.Add(entityData);
         }
 
@@ -72,12 +76,7 @@ namespace University.Service.Implementations
             if (teacherForUpdatingDto is null)
                 throw new BadRequestException($"{teacherForUpdatingDto} is an invalid argument");
 
-            Teacher entityData = new()
-            {
-                Id = teacherForUpdatingDto.Id,
-                Name = teacherForUpdatingDto.Name
-            };
-
+            var entityData = _mapper.Map<Teacher>(teacherForUpdatingDto);
             await _teacherRepository.Update(entityData);
         }
     }

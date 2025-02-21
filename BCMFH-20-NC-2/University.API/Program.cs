@@ -4,6 +4,7 @@ using University.Repository.Implementations;
 using University.Repository.Interfaces;
 using University.Service.Implementations;
 using University.Service.Interfaces;
+using University.Service.Mapping;
 
 namespace University.API
 {
@@ -18,6 +19,8 @@ namespace University.API
             builder.Services
                 .AddDbContext<ApplicationDbContext>(options => options
                 .UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
+
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
 
             builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();

@@ -7,8 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\University.Models\University.Models.csproj" />
-	  <ProjectReference Include="..\University.Repository\University.Repository.csproj" />
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\University.Models\University.Models.csproj" />
+		<ProjectReference Include="..\University.Repository\University.Repository.csproj" />
 	</ItemGroup>
 
 </Project>

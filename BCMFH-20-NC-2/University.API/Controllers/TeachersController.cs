@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using University.Models.Dtos.Teacher;
-using University.Models.Entities;
-using University.Repository.Interfaces;
 using University.Service.Interfaces;
 
 namespace University.API.Controllers
@@ -43,7 +40,8 @@ namespace University.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTeachers()
         {
-            return Ok();
+            var result = await _teacherService.GetMultipleTeachers();
+            return Ok(result);
         }
 
 
