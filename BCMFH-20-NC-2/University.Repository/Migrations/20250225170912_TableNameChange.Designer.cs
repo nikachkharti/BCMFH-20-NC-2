@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using University.Repository.Data;
 
@@ -11,9 +12,11 @@ using University.Repository.Data;
 namespace University.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225170912_TableNameChange")]
+    partial class TableNameChange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -47,20 +50,6 @@ namespace University.Repository.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "33B7ED72-9434-434A-82D4-3018B018CB87",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -148,23 +137,6 @@ namespace University.Repository.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("UserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
-                            RoleId = "33B7ED72-9434-434A-82D4-3018B018CB87"
-                        },
-                        new
-                        {
-                            UserId = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
-                            RoleId = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B"
-                        },
-                        new
-                        {
-                            UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
-                            RoleId = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -304,59 +276,6 @@ namespace University.Repository.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("Users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b9ffe450-ed11-4b75-8168-11d511b7eea7",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENNkdAveNorYJOAl/Hr/ZW/XIHroPZ5vIQ40RVlunIrI8Tt6oHOqjK9uBgffCNBq2g==",
-                            PhoneNumber = "555337681",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "ae42937b-ae98-4420-bea5-163bcfbc4b0b",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b6c56c28-a49f-4037-ba47-31cdca4ec6ae",
-                            Email = "nika@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "NIKA@GMAIL.COM",
-                            NormalizedUserName = "NIKA@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEOA3fb87gbymibF6nCm2RUfyeiPd9M/r2AKu7xRaPgdDmaCrnybRFgdtuBmYPCdA9A==",
-                            PhoneNumber = "558490645",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "f127618b-e4a7-4bb3-a6bd-20a432a024ad",
-                            TwoFactorEnabled = false,
-                            UserName = "nika@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "de78b877-700d-4848-9bd2-f00177b92e8d",
-                            Email = "gio@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "GIO@GMAIL.COM",
-                            NormalizedUserName = "GIO@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAED1RJEZfv16lLoskBvqMgLW44nYd7tBUIS0REQXAkSmqeczW8MO93N3uR89Gj9veVA==",
-                            PhoneNumber = "551442269",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "0d33dbc8-d7bc-46b3-aa33-74d0ef14377a",
-                            TwoFactorEnabled = false,
-                            UserName = "gio@gmail.com"
-                        });
                 });
 
             modelBuilder.Entity("University.Models.Entities.Course", b =>
