@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using University.Repository.Data;
 
@@ -11,9 +12,11 @@ using University.Repository.Data;
 namespace University.Repository.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250225165453_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,21 +49,7 @@ namespace University.Repository.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "33B7ED72-9434-434A-82D4-3018B018CB87",
-                            Name = "Admin",
-                            NormalizedName = "ADMIN"
-                        },
-                        new
-                        {
-                            Id = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B",
-                            Name = "Customer",
-                            NormalizedName = "CUSTOMER"
-                        });
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -85,7 +74,72 @@ namespace University.Repository.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -110,7 +164,7 @@ namespace University.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -132,7 +186,7 @@ namespace University.Repository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -147,24 +201,7 @@ namespace University.Repository.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("UserRoles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
-                            RoleId = "33B7ED72-9434-434A-82D4-3018B018CB87"
-                        },
-                        new
-                        {
-                            UserId = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
-                            RoleId = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B"
-                        },
-                        new
-                        {
-                            UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
-                            RoleId = "9C07F9F6-D3B0-458A-AB7F-218AA622FA5B"
-                        });
+                    b.ToTable("AspNetUserRoles", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -183,7 +220,7 @@ namespace University.Repository.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("UserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens", (string)null);
                 });
 
             modelBuilder.Entity("University.Models.Entities.Address", b =>
@@ -235,130 +272,6 @@ namespace University.Repository.Migrations
                             City = "Batumi",
                             Street = "Test street #31",
                             StudentId = 3
-                        });
-                });
-
-            modelBuilder.Entity("University.Models.Entities.ApplicationUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("Users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "ef323a11-abeb-4073-89e1-7c7dfc702aeb",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = false,
-                            FullName = "ADMIN",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFdO6ye+tKDr8ZB97pJK3/lRGlmmG8vYPVgmJ1mV1wXEbmNnc9G3eNYaoabBtrSngw==",
-                            PhoneNumber = "555337681",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "b3911d81-8c23-430c-9723-dd172819cc48",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "36a959fc-d61d-4601-be18-db7448b1a35d",
-                            Email = "nika@gmail.com",
-                            EmailConfirmed = false,
-                            FullName = "Nika Chkahrtishvili",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "NIKA@GMAIL.COM",
-                            NormalizedUserName = "NIKA@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJNU6RRlIMVa2EFqs6PH7t04RMJyNB6xbjRqtRQyW+MR/KdmFb+L4e5oRJSpj851ow==",
-                            PhoneNumber = "558490645",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6b34480a-77fc-49e4-b409-2adccfa57509",
-                            TwoFactorEnabled = false,
-                            UserName = "nika@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "97804fca-2ad6-44a5-bf39-cb9db33f6fe8",
-                            Email = "gio@gmail.com",
-                            EmailConfirmed = false,
-                            FullName = "Giorgi Giorgadze",
-                            LockoutEnabled = true,
-                            NormalizedEmail = "GIO@GMAIL.COM",
-                            NormalizedUserName = "GIO@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHyXoaJ5wvC990Y/RF+CueGiBCbaCsz0KV0wKre7Ri9yhvpsfYUcbvHO5zk81TXF7A==",
-                            PhoneNumber = "551442269",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "d2a80a95-4df7-458a-983d-a2a7655f970a",
-                            TwoFactorEnabled = false,
-                            UserName = "gio@gmail.com"
                         });
                 });
 
@@ -588,7 +501,7 @@ namespace University.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("University.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -597,7 +510,7 @@ namespace University.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("University.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -612,7 +525,7 @@ namespace University.Repository.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("University.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -621,7 +534,7 @@ namespace University.Repository.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("University.Models.Entities.ApplicationUser", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

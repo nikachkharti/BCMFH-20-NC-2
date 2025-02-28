@@ -14,23 +14,24 @@ namespace University.API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddControllers();
-            builder.Services.AddOpenApi();
-            builder.Services
-                .AddDbContext<ApplicationDbContext>(options => options
-                .UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
+            builder.AddControllers();
+            builder.AddOpenApi();
+            builder.AddDatabase();
+            builder.AddAutoMapper();
+            builder.AddRepositories();
 
-            builder.Services.AddAutoMapper(typeof(MappingProfile));
-
-            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-            builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
-
-            builder.Services.AddScoped<ITeacherService, TeacherService>();
+            builder.ConfigureJwtOptions();
+            builder.AddIdentity();
+            builder.AddAuthentication();
+            builder.AddJwtTokenGenerator();
+            builder.AddServices();
+            builder.AddAuthService();
 
             var app = builder.Build();
 
             app.MapOpenApi();
             app.UseHttpsRedirection();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
             app.Run();

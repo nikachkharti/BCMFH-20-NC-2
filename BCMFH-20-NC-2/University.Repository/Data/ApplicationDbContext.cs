@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using University.Models.Entities;
 
 namespace University.Repository.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -11,6 +13,10 @@ namespace University.Repository.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ChangeDefaultTableNames();
+
             modelBuilder.ConfigureStudents();
             modelBuilder.ConfiugreAddresses();
             modelBuilder.ConfiugreTeachers();
@@ -22,6 +28,9 @@ namespace University.Repository.Data
             modelBuilder.SeedTeachers();
             modelBuilder.SeedCourses();
             modelBuilder.SeedGroups();
+            modelBuilder.SeedRoles();
+            modelBuilder.SeedUsers();
+            modelBuilder.SeedUserRoles();
         }
 
         public DbSet<Student> Students { get; set; }
@@ -29,5 +38,6 @@ namespace University.Repository.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Course> Courses { get; set; }
         public DbSet<Group> Groups { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }
 }
