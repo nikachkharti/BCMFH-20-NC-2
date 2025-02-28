@@ -351,7 +351,8 @@ namespace University.Repository.Data
                         TwoFactorEnabled = false,
                         LockoutEnd = null,
                         LockoutEnabled = true,
-                        AccessFailedCount = 0
+                        AccessFailedCount = 0,
+                        FullName = "ADMIN"
                     },
                     new ApplicationUser()
                     {
@@ -367,7 +368,8 @@ namespace University.Repository.Data
                         TwoFactorEnabled = false,
                         LockoutEnd = null,
                         LockoutEnabled = true,
-                        AccessFailedCount = 0
+                        AccessFailedCount = 0,
+                        FullName = "Nika Chkahrtishvili"
                     },
                     new ApplicationUser()
                     {
@@ -383,7 +385,8 @@ namespace University.Repository.Data
                         TwoFactorEnabled = false,
                         LockoutEnd = null,
                         LockoutEnabled = true,
-                        AccessFailedCount = 0
+                        AccessFailedCount = 0,
+                        FullName = "Giorgi Giorgadze"
                     }
                 );
         }

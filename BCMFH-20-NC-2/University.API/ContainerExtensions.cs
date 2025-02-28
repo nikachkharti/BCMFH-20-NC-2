@@ -77,17 +77,17 @@ namespace University.API
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
         }
+
         public static void ConfigureJwtOptions(this WebApplicationBuilder builder)
         {
             builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
         }
 
-
         public static void AddAuthentication(this WebApplicationBuilder builder)
         {
             var secret = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Secret");
             var issuer = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Issuer");
-            var audience = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Audeince");
+            var audience = builder.Configuration.GetValue<string>("ApiSettings:JwtOptions:Audience");
             var key = Encoding.ASCII.GetBytes(secret);
 
             builder.Services.AddAuthentication(options =>

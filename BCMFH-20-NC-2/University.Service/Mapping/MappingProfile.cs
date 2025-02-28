@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using University.Models.Dtos.Course;
+using University.Models.Dtos.Identity;
 using University.Models.Dtos.Teacher;
 using University.Models.Entities;
 
@@ -25,6 +26,14 @@ namespace University.Service.Mapping
             CreateMap<Course, CourseForGettingDto>()
                 .ForMember(dest => dest.Id, options => options.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Title, options => options.MapFrom(src => src.Title));
+
+            CreateMap<UserDto, ApplicationUser>().ReverseMap();
+            CreateMap<RegistrationRequestDto, ApplicationUser>()
+                .ForMember(dest => dest.UserName, options => options.MapFrom(src => src.Email))
+                .ForMember(dest => dest.NormalizedUserName, options => options.MapFrom(src => src.Email.ToUpper()))
+                .ForMember(dest => dest.Email, options => options.MapFrom(src => src.Email))
+                .ForMember(dest => dest.NormalizedEmail, options => options.MapFrom(src => src.Email.ToUpper()))
+                .ForMember(dest => dest.FullName, options => options.MapFrom(src => src.FullName));
         }
     }
 }

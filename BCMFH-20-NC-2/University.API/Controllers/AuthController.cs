@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using University.Models.Dtos.Identity;
 using University.Service.Interfaces;
 
@@ -17,12 +18,15 @@ namespace University.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromForm] RegistrationRequestDto model)
         {
-            return Ok();
+            await _authService.Register(model);
+            return Created();
         }
 
         [HttpPost("registeradmin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> RegisterAdmin([FromForm] RegistrationRequestDto model)
         {
+            await _authService.RegisterAdmin(model);
             return Ok();
         }
 
@@ -30,7 +34,8 @@ namespace University.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromForm] LoginRequestDto model)
         {
-            return Ok();
+            var result = await _authService.Login(model);
+            return Ok(result);
         }
 
     }
