@@ -1,8 +1,4 @@
-﻿
-using Example.API.Services;
-using Example.API.Services.Interfaces;
-
-namespace Example.API
+﻿namespace Example.API
 {
     public class Program
     {
@@ -14,7 +10,7 @@ namespace Example.API
             //builder.Services.AddSingleton<IStudentService, StudentService>();
 
             //Scoped - ყოველი ახალი ინსტანსი იქმნება მხოლოდ კონკრეტული  scope - ის შიგნით. საშუალოდ სიცოცხლისუნარიანი.
-            builder.Services.AddScoped<IStudentService, StudentService>();
+            //builder.Services.AddScoped<IStudentService, StudentService>();
 
             //Transient - ნიშნავს რომ ყოველ ჯერზე სერვისის გამოყენებისას ძველი ინსტანსი განადგურდება (Dispose) ახალი ინსტანსი შეიქმენბა.ყველაზე ხანმოკლე სიცოცხლის მქონე.
             //builder.Services.AddTransient<IStudentService, StudentService>();
