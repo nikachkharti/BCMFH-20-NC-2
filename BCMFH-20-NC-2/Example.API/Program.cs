@@ -1,9 +1,15 @@
-﻿namespace Example.API
+﻿using Example.API.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+
+
+namespace Example.API
 {
     public class Program
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
 
             //Singleton - ნიშნავს რომ რეგისტრირებული სერვისის მხოლოდ 1 ინსტანსი მოემსახურება მთელს აპლიკაციას, სანამ აპლიკაცია აქტიურია. ყველაზე სიცოცხლისუნარიანი
@@ -17,6 +23,9 @@
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
+            builder.Services
+                .AddDbContext<ApplicationDbContext>(options => options
+                .UseSqlServer(builder.Configuration.GetConnectionString("SQLServerConnection")));
 
             var app = builder.Build();
 
