@@ -5,47 +5,25 @@ using University.Repository.Interfaces;
 
 namespace University.Repository.Implementations
 {
-    public class GroupRepository : IGroupRepository
+    public class GroupRepository : RepositoryBase<Group>, IGroupRepository
     {
         private readonly ApplicationDbContext _context;
-        public GroupRepository(ApplicationDbContext context)
+
+        public GroupRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
 
-        public async Task Add(Group model)
+        public async Task Update(Group entity)
         {
-            await _context.Groups.AddAsync(model);
-            await _context.SaveChangesAsync();
-        }
+            var entityFromDb = await _context.Groups.FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-        public async Task Delete(int id)
-        {
-            var groupToDelete = await _context.Groups.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Groups.Remove(groupToDelete);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Group> Get(int id)
-        {
-            var result = await _context.Groups.FirstOrDefaultAsync(x => x.Id == id);
-            return result;
-        }
-
-        public async Task<List<Group>> GetAll()
-        {
-            return await _context.Groups.ToListAsync();
-        }
-
-        public async Task Update(Group model)
-        {
-            var groupToUpdate = await _context.Groups.FirstOrDefaultAsync(x => x.Id == model.Id);
-
-            groupToUpdate.Name = model.Name;
-            groupToUpdate.StudentId = model.StudentId;
-            groupToUpdate.CourseId = model.CourseId;
-
-            await _context.SaveChangesAsync();
+            if (entityFromDb is not null)
+            {
+                entityFromDb.Name = entity.Name;
+                entityFromDb.StudentId = entity.StudentId;
+                entityFromDb.CourseId = entity.CourseId;
+            }
         }
     }
 }

@@ -2,12 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface IGroupRepository
+    public interface IGroupRepository : IRepositoryBase<Group>, IUpdatable<Group>
     {
-        Task<List<Group>> GetAll();
-        Task<Group> Get(int id);
-        Task Add(Group model);
-        Task Update(Group model);
-        Task Delete(int id);
     }
 }

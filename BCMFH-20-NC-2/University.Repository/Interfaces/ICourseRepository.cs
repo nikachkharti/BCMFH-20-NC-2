@@ -2,7 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface ICourseRepository : IRepositoryBase<Course>, IUpdatable<Course>, ISavable
+    public interface ICourseRepository : IRepositoryBase<Course>, IUpdatable<Course>
     {
     }
 }

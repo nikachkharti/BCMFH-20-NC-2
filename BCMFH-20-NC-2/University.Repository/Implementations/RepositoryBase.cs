@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Query.Internal;
 using System.Linq.Expressions;
 using University.Repository.Data;
 using University.Repository.Interfaces;
@@ -9,8 +8,10 @@ namespace University.Repository.Implementations
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         private readonly DbSet<T> _dbSet;
+        private readonly ApplicationDbContext _context;
         public RepositoryBase(ApplicationDbContext context)
         {
+            _context = context;
             _dbSet = context.Set<T>();
         }
 

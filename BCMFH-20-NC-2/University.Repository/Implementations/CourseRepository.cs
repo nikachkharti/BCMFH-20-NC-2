@@ -12,9 +12,6 @@ namespace University.Repository.Implementations
         {
             _context = context;
         }
-
-        public async Task Save() => await _context.SaveChangesAsync();
-
         public async Task Update(Course entity)
         {
             var entiyFromDb = await _context.Courses.FirstOrDefaultAsync(x => x.Id == entity.Id);

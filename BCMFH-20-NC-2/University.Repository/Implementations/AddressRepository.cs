@@ -13,8 +13,6 @@ namespace University.Repository.Implementations
             _context = context;
         }
 
-        public async Task Save() => await _context.SaveChangesAsync();
-
         public async Task Update(Address entity)
         {
             var entityFromDb = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == entity.Id);

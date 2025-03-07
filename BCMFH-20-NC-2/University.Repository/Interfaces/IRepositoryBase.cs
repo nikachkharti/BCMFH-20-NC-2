@@ -2,7 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface IRepositoryBase<T> where T : class
+    public interface IRepositoryBase<T> : ISavable where T : class
     {
         Task<List<T>> GetAllAsync(string includeProperties = null);
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter, string includeProperties = null);

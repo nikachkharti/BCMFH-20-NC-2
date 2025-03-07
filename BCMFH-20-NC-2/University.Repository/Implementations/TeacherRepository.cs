@@ -5,50 +5,22 @@ using University.Repository.Interfaces;
 
 namespace University.Repository.Implementations
 {
-    public class TeacherRepository : ITeacherRepository
+    public class TeacherRepository : RepositoryBase<Teacher>, ITeacherRepository
     {
         private readonly ApplicationDbContext _context;
-
-        public TeacherRepository(ApplicationDbContext context)
+        public TeacherRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
 
-        public async Task Add(Teacher model)
+        public async Task Update(Teacher entity)
         {
-            await _context.Teachers.AddAsync(model);
-            await _context.SaveChangesAsync();
-        }
+            var entityFromDb = await _context.Teachers.FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-        public async Task Delete(int id)
-        {
-            var teacherToDelete = await _context.Teachers.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Teachers.Remove(teacherToDelete);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Teacher> Get(int id)
-        {
-            var result = await _context.Teachers
-                .Include(x => x.Courses)
-                .FirstOrDefaultAsync(x => x.Id == id);
-            return result;
-        }
-
-        public async Task<List<Teacher>> GetAll()
-        {
-            return await _context.Teachers
-                .Include(x => x.Courses)
-                .ToListAsync();
-        }
-
-        public async Task Update(Teacher model)
-        {
-            var teacherToUpdate = await _context.Teachers.FirstOrDefaultAsync(x => x.Id == model.Id);
-
-            teacherToUpdate.Name = model.Name;
-
-            await _context.SaveChangesAsync();
+            if (entityFromDb is not null)
+            {
+                entityFromDb.Name = entity.Name;
+            }
         }
     }
 }

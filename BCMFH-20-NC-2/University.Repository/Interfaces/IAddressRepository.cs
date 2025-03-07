@@ -2,7 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface IAddressRepository : IRepositoryBase<Address>, IUpdatable<Address>, ISavable
+    public interface IAddressRepository : IRepositoryBase<Address>, IUpdatable<Address>
     {
     }
 }

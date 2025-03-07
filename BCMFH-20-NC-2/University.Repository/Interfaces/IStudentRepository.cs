@@ -2,12 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface IStudentRepository
+    public interface IStudentRepository : IRepositoryBase<Student>, IUpdatable<Student>
     {
-        Task<List<Student>> GetAll();
-        Task<Student> Get(int id);
-        Task Add(Student model);
-        Task Update(Student model);
-        Task Delete(int id);
     }
 }
