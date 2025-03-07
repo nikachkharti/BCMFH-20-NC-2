@@ -66,5 +66,6 @@ namespace University.Repository.Implementations
         public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
         public void Remove(T entity) => _dbSet.Remove(entity);
         public void RemoveRange(IEnumerable<T> entities) => _dbSet.RemoveRange(entities);
+        public async Task Save() => await _context.SaveChangesAsync();
     }
 }

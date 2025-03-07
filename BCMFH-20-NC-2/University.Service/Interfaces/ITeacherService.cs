@@ -9,5 +9,6 @@ namespace University.Service.Interfaces
         Task AddNewTeacher(TeacherForCreatingDto teacherForCreatingDto);
         Task UpdateTeacher(TeacherForUpdatingDto teacherForUpdatingDto);
         Task DeleteTeacher(int teacherId);
+        Task SaveTeacher();
     }
 }

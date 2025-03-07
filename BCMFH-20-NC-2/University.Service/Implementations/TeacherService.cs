@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using University.Models.Dtos.Course;
 using University.Models.Dtos.Teacher;
 using University.Models.Entities;
 using University.Repository.Interfaces;
@@ -20,7 +19,7 @@ namespace University.Service.Implementations
 
         public async Task<List<TeacherForGettingDto>> GetMultipleTeachers()
         {
-            List<Teacher> entityData = await _teacherRepository.GetAll();
+            List<Teacher> entityData = await _teacherRepository.GetAllAsync(includeProperties: "Courses");
             List<TeacherForGettingDto> result = new();
 
             if (entityData.Any())
@@ -39,7 +38,7 @@ namespace University.Service.Implementations
             if (teacherId <= 0)
                 throw new BadRequestException($"{teacherId} is an invalid argument");
 
-            Teacher entityData = await _teacherRepository.Get(teacherId);
+            Teacher entityData = await _teacherRepository.GetAsync(x => x.Id == teacherId, includeProperties: "Courses");
 
             if (entityData is null)
                 throw new NotFoundException($"{entityData} not found");
@@ -60,15 +59,24 @@ namespace University.Service.Implementations
             }
 
             var entityData = _mapper.Map<Teacher>(teacherForCreatingDto);
-            await _teacherRepository.Add(entityData);
+            await _teacherRepository.AddAsync(entityData);
         }
 
         public async Task DeleteTeacher(int teacherId)
         {
             if (teacherId <= 0)
+            {
                 throw new BadRequestException($"{teacherId} is an invalid argument");
+            }
 
-            await _teacherRepository.Delete(teacherId);
+            var teacherToDelete = await _teacherRepository.GetAsync(x => x.Id == teacherId);
+
+            if (teacherToDelete is null)
+            {
+                throw new NotFoundException($"Teacher with id {teacherId} not found");
+            }
+
+            _teacherRepository.Remove(teacherToDelete);
         }
 
         public async Task UpdateTeacher(TeacherForUpdatingDto teacherForUpdatingDto)
@@ -79,6 +87,8 @@ namespace University.Service.Implementations
             var entityData = _mapper.Map<Teacher>(teacherForUpdatingDto);
             await _teacherRepository.Update(entityData);
         }
+
+        public async Task SaveTeacher() => await _teacherRepository.Save();
     }
 
 }
