@@ -2,12 +2,7 @@
 
 namespace University.Repository.Interfaces
 {
-    public interface IAddressRepository
+    public interface IAddressRepository : IRepositoryBase<Address>, IUpdatable<Address>, ISavable
     {
-        Task<List<Address>> GetAll();
-        Task<Address> Get(int id);
-        Task Add(Address model);
-        Task Update(Address model);
-        Task Delete(int id);
     }
 }

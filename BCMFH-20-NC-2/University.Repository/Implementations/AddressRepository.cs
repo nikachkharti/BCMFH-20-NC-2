@@ -5,48 +5,26 @@ using University.Repository.Interfaces;
 
 namespace University.Repository.Implementations
 {
-    public class AddressRepository : IAddressRepository
+    public class AddressRepository : RepositoryBase<Address>, IAddressRepository
     {
         private readonly ApplicationDbContext _context;
-
-        public AddressRepository(ApplicationDbContext context)
+        public AddressRepository(ApplicationDbContext context) : base(context)
         {
             _context = context;
         }
 
-        public async Task Add(Address model)
+        public async Task Save() => await _context.SaveChangesAsync();
+
+        public async Task Update(Address entity)
         {
-            await _context.Addresses.AddAsync(model);
-            await _context.SaveChangesAsync();
-        }
+            var entityFromDb = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == entity.Id);
 
-        public async Task Delete(int id)
-        {
-            var addressToDelete = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
-            _context.Addresses.Remove(addressToDelete);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<Address> Get(int id)
-        {
-            var result = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == id);
-            return result;
-        }
-
-        public async Task<List<Address>> GetAll()
-        {
-            return await _context.Addresses.ToListAsync();
-        }
-
-        public async Task Update(Address model)
-        {
-            var addressToUpdate = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == model.Id);
-
-            addressToUpdate.City = model.City;
-            addressToUpdate.Street = model.Street;
-            addressToUpdate.StudentId = model.StudentId;
-
-            await _context.SaveChangesAsync();
+            if (entityFromDb is not null)
+            {
+                entityFromDb.City = entity.City;
+                entityFromDb.Street = entity.Street;
+                entityFromDb.StudentId = entity.StudentId;
+            }
         }
     }
 }
