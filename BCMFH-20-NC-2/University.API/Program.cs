@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using University.API.Middleware;
 using University.Repository.Data;
 using University.Repository.Implementations;
 using University.Repository.Interfaces;
@@ -29,6 +30,7 @@ namespace University.API
 
             var app = builder.Build();
 
+            app.UseMiddleware<ExceptionHandlingMiddleware>();
             app.MapOpenApi();
             app.UseHttpsRedirection();
             app.UseAuthentication();

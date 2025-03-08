@@ -26,9 +26,13 @@ namespace University.Service.Implementations
             {
                 var mappedData = _mapper.Map<List<TeacherForGettingDto>>(entityData);
                 result.AddRange(mappedData);
+                return result;
+            }
+            else
+            {
+                throw new NotFoundException($"Teachers not found");
             }
 
-            return result;
         }
 
         public async Task<TeacherForGettingDto> GetSingleTeacher(int teacherId)
@@ -41,7 +45,7 @@ namespace University.Service.Implementations
             Teacher entityData = await _teacherRepository.GetAsync(x => x.Id == teacherId, includeProperties: "Courses");
 
             if (entityData is null)
-                throw new NotFoundException($"{entityData} not found");
+                throw new NotFoundException($" teacher not found");
 
             if (entityData.Courses.Any())
             {
@@ -56,6 +60,13 @@ namespace University.Service.Implementations
             if (teacherForCreatingDto is null)
             {
                 throw new BadRequestException($"{teacherForCreatingDto} is an invalid argument");
+            }
+
+            var sameTeacher = await _teacherRepository.GetAsync(x => x.Name.ToLower().Trim() == teacherForCreatingDto.Name.ToLower().Trim());
+
+            if (sameTeacher is not null)
+            {
+                throw new AmbigousNameException();
             }
 
             var entityData = _mapper.Map<Teacher>(teacherForCreatingDto);
