@@ -7,7 +7,7 @@ namespace University.API.Controllers
 {
     [Route("api/teachers")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class TeachersController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
@@ -16,6 +16,12 @@ namespace University.API.Controllers
             _teacherService = teacherService;
         }
 
+
+        /// <summary>
+        /// მასწავლებლის დამატება
+        /// </summary>
+        /// <param name="model">TeacherForCreatingDto</param>
+        /// <returns>Task IActionResult</returns>
         [HttpPost]
         public async Task<IActionResult> AddTeacher([FromBody] TeacherForCreatingDto model)
         {
@@ -26,6 +32,11 @@ namespace University.API.Controllers
         }
 
 
+        /// <summary>
+        /// მასწავლებლის წაშლა
+        /// </summary>
+        /// <param name="id">მასწავლებლის Id</param>
+        /// <returns>Task IActionResult</returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTeacher([FromRoute] int id)
         {
@@ -35,6 +46,12 @@ namespace University.API.Controllers
             return StatusCode(response.StatusCode, response);
         }
 
+
+        /// <summary>
+        /// მასწავლებლის განახლება
+        /// </summary>
+        /// <param name="model">TeacherForUpdatingDto</param>
+        /// <returns>Task IActionResult</returns>
         [HttpPut]
         public async Task<IActionResult> UpdateTeacher([FromBody] TeacherForUpdatingDto model)
         {
@@ -45,6 +62,10 @@ namespace University.API.Controllers
         }
 
 
+        /// <summary>
+        /// ყველა მასწავლებელი
+        /// </summary>
+        /// <returns>Task IActionResult</returns>
         [HttpGet]
         public async Task<IActionResult> GetTeachers()
         {
@@ -54,6 +75,11 @@ namespace University.API.Controllers
         }
 
 
+        /// <summary>
+        /// კონკრეტული მასწავლებელი
+        /// </summary>
+        /// <param name="id">მასწავლებლის id</param>
+        /// <returns>Task IActioNResult</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTeacher([FromRoute] int id)
         {
