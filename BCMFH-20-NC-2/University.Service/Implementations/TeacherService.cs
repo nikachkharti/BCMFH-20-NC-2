@@ -17,9 +17,9 @@ namespace University.Service.Implementations
             _mapper = mapper;
         }
 
-        public async Task<List<TeacherForGettingDto>> GetMultipleTeachers()
+        public async Task<List<TeacherForGettingDto>> GetMultipleTeachers(int pageNumber, int pageSize)
         {
-            List<Teacher> entityData = await _teacherRepository.GetAllAsync(includeProperties: "Courses");
+            List<Teacher> entityData = await _teacherRepository.GetAllAsync(pageNumber, pageSize, includeProperties: "Courses");
             List<TeacherForGettingDto> result = new();
 
             if (entityData.Any())

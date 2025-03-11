@@ -67,9 +67,9 @@ namespace University.API.Controllers
         /// </summary>
         /// <returns>Task IActionResult</returns>
         [HttpGet]
-        public async Task<IActionResult> GetTeachers()
+        public async Task<IActionResult> GetTeachers([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
-            var result = await _teacherService.GetMultipleTeachers();
+            var result = await _teacherService.GetMultipleTeachers(pageNumber, pageSize);
             ApiResponse response = new(ApiResponseMessage.successMessage, result, 200, isSuccess: true);
             return StatusCode(response.StatusCode, response);
         }

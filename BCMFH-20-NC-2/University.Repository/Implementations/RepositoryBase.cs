@@ -16,7 +16,33 @@ namespace University.Repository.Implementations
         }
 
 
-        public async Task<List<T>> GetAllAsync(string includeProperties = null)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter, int pageNumber, int pageSize, string includeProperties = null)
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (!string.IsNullOrWhiteSpace(includeProperties))
+            {
+                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query
+                        .Include(includeProperty)
+                        .Skip((pageNumber - 1) * pageSize)
+                        .Take(pageSize);
+
+                }
+
+                return await query.ToListAsync();
+            }
+
+            var entities = await query
+                .Where(filter)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return entities;
+        }
+        public async Task<List<T>> GetAllAsync(int pageNumber, int pageSize, string includeProperties = null)
         {
             if (!string.IsNullOrWhiteSpace(includeProperties))
             {
@@ -27,25 +53,17 @@ namespace University.Repository.Implementations
                     query = query.Include(includeProperty);
                 }
 
-                return await query.ToListAsync();
+                return await
+                    query
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
             }
 
-            return await _dbSet.ToListAsync();
-        }
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter, string includeProperties = null)
-        {
-            IQueryable<T> query = _dbSet;
-
-            if (!string.IsNullOrWhiteSpace(includeProperties))
-            {
-                foreach (var includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-                {
-                    query = query.Include(includeProperty);
-                }
-            }
-
-            return await query
-                .Where(filter)
+            return await
+                _dbSet
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
         }
         public async Task<T> GetAsync(Expression<Func<T, bool>> filter, string includeProperties = null)
@@ -62,7 +80,6 @@ namespace University.Repository.Implementations
 
             return await query.FirstOrDefaultAsync(filter);
         }
-
         public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
         public void Remove(T entity) => _dbSet.Remove(entity);
         public void RemoveRange(IEnumerable<T> entities) => _dbSet.RemoveRange(entities);
