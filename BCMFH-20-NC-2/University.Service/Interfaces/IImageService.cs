@@ -6,5 +6,6 @@ namespace University.Service.Interfaces
     {
         string DeleteImage(string imageUrl);
         Task<string> UploadImage(IFormFile imageFile);
+        Task<string> UploadResizedImage(IFormFile imageFile);
     }
 }

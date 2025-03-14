@@ -72,7 +72,7 @@ namespace University.Service.Implementations
                 throw new AmbigousNameException();
             }
 
-            teacherForCreatingDto.ProfilePictureUrl = await _imageService.UploadImage(teacherForCreatingDto.ProfilePicture);
+            teacherForCreatingDto.ProfilePictureUrl = await _imageService.UploadResizedImage(teacherForCreatingDto.ProfilePicture);
 
             var entityData = _mapper.Map<Teacher>(teacherForCreatingDto);
             await _teacherRepository.AddAsync(entityData);
