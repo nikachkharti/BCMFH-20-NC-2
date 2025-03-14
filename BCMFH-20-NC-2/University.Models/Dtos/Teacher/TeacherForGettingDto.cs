@@ -7,5 +7,6 @@ namespace University.Models.Dtos.Teacher
         public int Id { get; set; }
         public string Name { get; set; }
         public List<CourseForGettingDto> Courses { get; set; }
+        public string ProfilePictureUrl { get; set; }
     }
 }

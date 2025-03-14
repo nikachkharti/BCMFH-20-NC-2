@@ -14,6 +14,9 @@ namespace University.Models.Entities
         //[MaxLength(50)]
         public string Name { get; set; }
 
+        public string ProfilePictureUrl { get; set; }
+
+
         //1xM
         public List<Course> Courses { get; set; }
     }

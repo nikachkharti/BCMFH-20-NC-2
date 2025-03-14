@@ -227,12 +227,14 @@ namespace University.Repository.Data
                     new Teacher()
                     {
                         Id = 1,
-                        Name = "Nika Chkarhtishvili"
+                        Name = "Nika Chkarhtishvili",
+                        ProfilePictureUrl = null
                     },
                     new Teacher()
                     {
                         Id = 2,
-                        Name = "Giorgi Giorgadze"
+                        Name = "Giorgi Giorgadze",
+                        ProfilePictureUrl = null
                     }
                 );
         }

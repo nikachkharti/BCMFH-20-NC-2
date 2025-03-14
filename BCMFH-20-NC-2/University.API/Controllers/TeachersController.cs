@@ -7,7 +7,7 @@ namespace University.API.Controllers
 {
     [Route("api/teachers")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class TeachersController : ControllerBase
     {
         private readonly ITeacherService _teacherService;
@@ -23,7 +23,7 @@ namespace University.API.Controllers
         /// <param name="model">TeacherForCreatingDto</param>
         /// <returns>Task IActionResult</returns>
         [HttpPost]
-        public async Task<IActionResult> AddTeacher([FromBody] TeacherForCreatingDto model)
+        public async Task<IActionResult> AddTeacher([FromForm] TeacherForCreatingDto model)
         {
             await _teacherService.AddNewTeacher(model);
             await _teacherService.SaveTeacher();

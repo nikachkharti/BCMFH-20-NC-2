@@ -14,10 +14,12 @@ namespace University.Service.Mapping
         {
             CreateMap<Teacher, TeacherForGettingDto>()
                 .ForMember(dest => dest.Id, options => options.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Name, options => options.MapFrom(src => src.Name));
+                .ForMember(dest => dest.Name, options => options.MapFrom(src => src.Name))
+                .ForMember(dest => dest.ProfilePictureUrl, options => options.MapFrom(src => src.ProfilePictureUrl));
 
             CreateMap<TeacherForCreatingDto, Teacher>()
-                .ForMember(dest => dest.Name, options => options.MapFrom(src => src.Name));
+                .ForMember(dest => dest.Name, options => options.MapFrom(src => src.Name))
+                .ForMember(dest => dest.ProfilePictureUrl, options => options.MapFrom(src => src.ProfilePictureUrl));
 
             CreateMap<TeacherForUpdatingDto, Teacher>()
                 .ForMember(dest => dest.Id, options => options.MapFrom(src => src.Id))

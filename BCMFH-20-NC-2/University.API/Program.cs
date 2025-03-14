@@ -32,6 +32,7 @@ namespace University.API
             var app = builder.Build();
 
             app.CreateDatabaseAutomatically();
+            app.UseStaticFiles();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
             //app.MapOpenApi();
             app.UseSwagger();
